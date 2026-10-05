@@ -1,905 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b12">
-  <meta name="description" content="CLAN FESTIVAL 2026 — Official festival hub of BANGLADESH CLAN.">
-  <title>CLAN FESTIVAL 2026 | BANGLADESH CLAN</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080b12;
-      color: #f5f7fb;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    /* ---------- FESTIVAL BACKGROUND ---------- */
-
-    .festival-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255, 55, 95, .12), transparent 28%),
-        radial-gradient(circle at 85% 25%, rgba(88, 120, 255, .12), transparent 30%),
-        radial-gradient(circle at 50% 85%, rgba(255, 190, 50, .08), transparent 32%),
-        #080b12;
-    }
-
-    .glow {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: .18;
-      animation: drift 12s ease-in-out infinite alternate;
-    }
-
-    .glow.one {
-      background: #ff315c;
-      left: -120px;
-      top: 20%;
-    }
-
-    .glow.two {
-      background: #446dff;
-      right: -130px;
-      top: 50%;
-      animation-delay: -5s;
-    }
-
-    @keyframes drift {
-      from { transform: translate3d(0, 0, 0); }
-      to { transform: translate3d(60px, -45px, 0); }
-    }
-
-    /* ---------- TOP NAV ---------- */
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(18px);
-      background: rgba(8, 11, 18, .78);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .nav-inner {
-      max-width: 1180px;
-      margin: auto;
-      padding: 15px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .brand span {
-      display: block;
-      font-size: 10px;
-      color: #aeb7c9;
-      letter-spacing: 2px;
-      margin-top: 3px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      font-size: 14px;
-      color: #c9d0dd;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
-    /* ---------- HANGING BANNER ---------- */
-
-    .banner-wrap {
-      padding: 22px 14px 5px;
-      perspective: 900px;
-    }
-
-    .festival-banner {
-      position: relative;
-      max-width: 900px;
-      margin: auto;
-      padding: 25px 20px 28px;
-      text-align: center;
-      border-radius: 10px 10px 16px 16px;
-      background:
-        linear-gradient(135deg, #9e102c, #d62248 45%, #94132f);
-      border: 1px solid rgba(255,255,255,.22);
-      box-shadow:
-        0 25px 50px rgba(0,0,0,.35),
-        inset 0 0 30px rgba(255,255,255,.08);
-      transform-origin: top center;
-      animation: bannerSwing 4.5s ease-in-out infinite;
-      cursor: pointer;
-      overflow: hidden;
-    }
-
-    .festival-banner::before,
-    .festival-banner::after {
-      content: "🎈";
-      position: absolute;
-      top: 12px;
-      font-size: 24px;
-      animation: balloonFloat 2.8s ease-in-out infinite;
-    }
-
-    .festival-banner::before {
-      left: 7%;
-    }
-
-    .festival-banner::after {
-      right: 7%;
-      animation-delay: -1.2s;
-    }
-
-    @keyframes bannerSwing {
-      0%, 100% { transform: rotateX(0deg) rotateZ(-1deg); }
-      50% { transform: rotateX(2deg) rotateZ(1deg); }
-    }
-
-    @keyframes balloonFloat {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
-    }
-
-    .banner-title {
-      font-size: clamp(23px, 5vw, 48px);
-      font-weight: 950;
-      letter-spacing: 2px;
-      text-shadow: 0 3px 15px rgba(0,0,0,.4);
-    }
-
-    .banner-subtitle {
-      margin-top: 7px;
-      font-size: clamp(11px, 2vw, 15px);
-      letter-spacing: 2px;
-      font-weight: 700;
-      opacity: .9;
-    }
-
-    /* ---------- HERO ---------- */
-
-    .hero {
-      max-width: 1180px;
-      margin: auto;
-      min-height: 680px;
-      padding: 90px 22px 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 15px;
-      border: 1px solid rgba(80,255,150,.25);
-      background: rgba(50,255,130,.07);
-      color: #7dffad;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: #5dff9a;
-      border-radius: 50%;
-      box-shadow: 0 0 15px #5dff9a;
-    }
-
-    h1 {
-      margin-top: 25px;
-      font-size: clamp(48px, 10vw, 105px);
-      line-height: .9;
-      font-weight: 950;
-      letter-spacing: -4px;
-      background: linear-gradient(120deg, #fff, #ffcf6e, #ff5b78, #fff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-clan {
-      margin-top: 22px;
-      font-size: clamp(18px, 3vw, 29px);
-      font-weight: 800;
-      letter-spacing: 5px;
-    }
-
-    .tagline {
-      max-width: 650px;
-      margin: 20px auto 0;
-      color: #aeb7c9;
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    .dates {
-      margin-top: 25px;
-      color: #d9deea;
-      font-weight: 700;
-    }
-
-    .actions {
-      margin-top: 32px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 13px;
-    }
-
-    .btn {
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 12px;
-      padding: 14px 22px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: .25s;
-      background: rgba(255,255,255,.06);
-      color: white;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,.12);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #ff315c, #ff7b43);
-      border: none;
-      box-shadow: 0 10px 30px rgba(255,49,92,.22);
-    }
-
-    /* ---------- SECTIONS ---------- */
-
-    section {
-      max-width: 1180px;
-      margin: auto;
-      padding: 85px 22px;
-    }
-
-    .section-label {
-      color: #ff718c;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(30px, 5vw, 52px);
-      margin-bottom: 15px;
-    }
-
-    .section-description {
-      color: #9ea8ba;
-      max-width: 720px;
-      line-height: 1.7;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-top: 35px;
-    }
-
-    .card {
-      padding: 25px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.08);
-      transition: .3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,255,255,.18);
-    }
-
-    .card-icon {
-      font-size: 30px;
-      margin-bottom: 18px;
-    }
-
-    .card h3 {
-      margin-bottom: 9px;
-    }
-
-    .card p {
-      color: #98a3b7;
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    /* ---------- SCORING ---------- */
-
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 35px;
-    }
-
-    .score {
-      padding: 18px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 15px;
-    }
-
-    .score strong {
-      display: block;
-      font-size: 25px;
-      margin-bottom: 5px;
-    }
-
-    .score span {
-      color: #a2acbd;
-      font-size: 13px;
-    }
-
-    /* ---------- LEADERBOARD ---------- */
-
-    .leaderboard {
-      margin-top: 30px;
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 18px;
-      overflow: hidden;
-      background: rgba(255,255,255,.035);
-    }
-
-    .leader-row {
-      display: grid;
-      grid-template-columns: 70px 1fr 130px;
-      padding: 17px 20px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .leader-row:last-child {
-      border-bottom: none;
-    }
-
-    .leader-head {
-      color: #8791a5;
-      font-size: 12px;
-      text-transform: uppercase;
-    }
-
-    .points {
-      text-align: right;
-      font-weight: 900;
-      color: #ffd16c;
-    }
-
-    /* ---------- PRIZE ---------- */
-
-    .prize-box {
-      margin-top: 30px;
-      padding: 45px 30px;
-      border-radius: 25px;
-      text-align: center;
-      background:
-        radial-gradient(circle at center, rgba(255,180,50,.12), transparent 55%),
-        rgba(255,255,255,.04);
-      border: 1px solid rgba(255,196,82,.15);
-    }
-
-    .prize-value {
-      font-size: clamp(40px, 8vw, 78px);
-      font-weight: 950;
-      margin: 10px 0;
-      color: #ffd16c;
-    }
-
-    .prize-note {
-      color: #aab3c4;
-    }
-
-    /* ---------- LEADERS ---------- */
-
-    .leader-cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 35px;
-    }
-
-    .leader-card {
-      padding: 30px;
-      border-radius: 20px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .leader-role {
-      color: #ff718c;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    .leader-name {
-      font-size: 27px;
-      margin: 9px 0;
-    }
-
-    .leader-info {
-      color: #9ea8ba;
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    /* ---------- FOOTER ---------- */
-
-    footer {
-      padding: 55px 22px;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,.07);
-      color: #7e899d;
-    }
-
-    footer strong {
-      color: white;
-    }
-
-    /* ---------- FIREWORKS ---------- */
-
-    #fireworks {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      pointer-events: none;
-      display: none;
-      overflow: hidden;
-      background: rgba(0,0,0,.35);
-    }
-
-    #fireworks.active {
-      display: block;
-    }
-
-    .firework {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 0 15px 5px rgba(255,255,255,.8);
-    }
-
-    .firework-text {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(.7);
-      text-align: center;
-      font-size: clamp(35px, 8vw, 95px);
-      font-weight: 950;
-      letter-spacing: 3px;
-      color: white;
-      text-shadow:
-        0 0 10px white,
-        0 0 25px #ff4e70,
-        0 0 50px #ff4e70;
-      opacity: 0;
-      animation: festivalText 2.5s ease-out forwards;
-    }
-
-    @keyframes festivalText {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(.7);
-      }
-      30% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.08);
-      }
-      75% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1.25);
-      }
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: white;
-      animation: particleFly 1.7s ease-out forwards;
-    }
-
-    @keyframes particleFly {
-      from {
-        transform: translate(0,0) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translate(var(--x),var(--y)) scale(0);
-        opacity: 0;
-      }
-    }
-
-    /* ---------- MOBILE ---------- */
-
-    @media (max-width: 850px) {
-      .nav-links {
-        display: none;
-      }
-
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .score-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .leader-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .hero {
-        min-height: 610px;
-        padding-top: 55px;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-
-      .cards,
-      .score-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .leader-row {
-        grid-template-columns: 50px 1fr 80px;
-        padding: 15px;
-      }
-
-      section {
-        padding: 65px 18px;
-      }
-
-      .festival-banner {
-        padding: 20px 12px 23px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b14">
+<meta name="description" content="CLAN FESTIVAL 2026 — Official event hub of BANGLADESH CLAN.">
+<title>CLAN FESTIVAL 2026 — BANGLADESH CLAN</title>
+<style>
+:root{
+  --bg:#05070d;--panel:rgba(14,19,31,.72);--panel2:rgba(20,27,43,.82);
+  --line:rgba(255,255,255,.10);--text:#f7f9ff;--muted:#a9b2c6;
+  --gold:#ffd76a;--cyan:#62e7ff;--green:#67f5a7;--red:#ff5d76;
+  --shadow:0 24px 80px rgba(0,0,0,.45);--radius:24px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 15% 5%,rgba(98,231,255,.11),transparent 25rem),
+ radial-gradient(circle at 85% 18%,rgba(255,215,106,.09),transparent 24rem),
+ linear-gradient(180deg,#05070d,#080c15 45%,#05070d);
+ color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.23;background-image:radial-gradient(#fff .6px,transparent .6px);background-size:38px 38px;mask-image:linear-gradient(to bottom,black,transparent 85%);z-index:-1}
+a{color:inherit;text-decoration:none}.container{width:min(1160px,92%);margin:auto}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(4,7,13,.62);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.navin{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:.12em;font-size:13px}.logo b{color:var(--gold)}
+.navlinks{display:flex;gap:8px}.navlinks a{padding:10px 13px;border-radius:12px;color:#cbd2e3;font-size:13px}.navlinks a:hover{background:rgba(255,255,255,.06);color:white}
+.menu{display:none;background:none;border:1px solid var(--line);color:white;border-radius:10px;padding:9px}
+.hero{min-height:100vh;padding:125px 0 70px;display:grid;place-items:center;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:38px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,215,106,.28);background:rgba(255,215,106,.06);padding:8px 12px;border-radius:999px;color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.12em}
+h1{font-size:clamp(48px,8vw,94px);line-height:.9;letter-spacing:-.055em;margin:22px 0 20px}
+.gradient{background:linear-gradient(100deg,#fff 0%,#ffd76a 42%,#62e7ff 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:17px;line-height:1.75;color:var(--muted);max-width:680px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{border:1px solid var(--line);padding:13px 18px;border-radius:14px;font-weight:800;font-size:14px;transition:.25s;cursor:pointer}
+.btn.primary{background:linear-gradient(135deg,#ffd76a,#ffad48);color:#101116;border:0;box-shadow:0 12px 35px rgba(255,190,70,.2)}.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:rgba(255,255,255,.04)}
+.status-card,.card{background:linear-gradient(145deg,rgba(20,27,43,.84),rgba(8,12,21,.78));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+.status-card{padding:28px;position:relative;overflow:hidden}.status-card:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-80px;top:-80px;background:rgba(98,231,255,.11);filter:blur(10px)}
+.status-top{display:flex;justify-content:space-between;align-items:center}.live{color:var(--green);font-size:12px;font-weight:900;letter-spacing:.1em}.dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 14px var(--green);margin-right:7px}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:24px 0}.time{padding:15px 6px;text-align:center;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.035)}.time strong{display:block;font-size:26px}.time span{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.meta{display:grid;gap:11px;color:#cbd2e3;font-size:13px}.meta span{color:var(--muted);display:block;font-size:11px;margin-bottom:3px}
+.banner-wrap{padding:10px 0 70px}.banner{margin:auto;max-width:980px;cursor:pointer;position:relative;transform-origin:top center;animation:sway 4.8s ease-in-out infinite}
+.banner:before{content:"";position:absolute;left:10%;right:10%;top:0;height:2px;background:rgba(255,255,255,.35)}
+.flag{min-height:145px;padding:28px 40px;display:grid;place-items:center;text-align:center;border:1px solid rgba(255,255,255,.14);border-radius:10px 10px 18px 18px;
+ background:linear-gradient(110deg,#b91c34,#871528 45%,#c69a2d 100%);clip-path:polygon(0 0,100% 0,95% 88%,82% 100%,68% 91%,52% 100%,36% 91%,18% 100%,0 88%);
+ box-shadow:0 20px 55px rgba(0,0,0,.45),inset 0 0 45px rgba(255,215,106,.15)}
+.flag h2{margin:0;font-size:clamp(24px,5vw,45px);letter-spacing:.12em;text-shadow:0 5px 25px rgba(0,0,0,.35)}.flag p{margin:8px 0 0;font-weight:800;letter-spacing:.18em;font-size:12px}
+@keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+section{padding:92px 0}.section-head{margin-bottom:34px}.kicker{font-size:11px;color:var(--gold);font-weight:900;letter-spacing:.16em;text-transform:uppercase}.section-head h2{font-size:clamp(30px,5vw,52px);margin:10px 0}.section-head p{color:var(--muted);max-width:680px;line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.score{padding:21px}.score .num{font-size:34px;font-weight:900}.score h3{font-size:15px;margin:10px 0 6px}.score p{font-size:12px;color:var(--muted);line-height:1.55;margin:0}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{padding:28px}.card h3{margin-top:0;font-size:22px}.card p,.card li{color:var(--muted);line-height:1.7}.list{padding-left:18px}
+.lb{overflow:hidden}.lb table{width:100%;border-collapse:collapse}.lb th,.lb td{text-align:left;padding:15px;border-bottom:1px solid var(--line);font-size:13px}.lb th{color:#818ba2;font-size:11px;text-transform:uppercase;letter-spacing:.12em}.rank{color:var(--gold);font-weight:900}
+.prize{display:grid;grid-template-columns:1fr .8fr;gap:25px;align-items:center}.prize-value{font-size:clamp(50px,8vw,86px);font-weight:950;letter-spacing:-.06em;color:var(--gold)}.pillrow{display:flex;flex-wrap:wrap;gap:8px}.pill{padding:9px 12px;border:1px solid var(--line);border-radius:999px;color:#cbd2e3;font-size:12px;background:rgba(255,255,255,.035)}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:18px}.person{display:flex;gap:18px;align-items:flex-start}.avatar{width:82px;height:82px;border-radius:22px;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#242c40,#111624);border:1px solid var(--line);font-size:28px;font-weight:900;color:var(--gold)}.person h3{margin:0 0 4px}.person .role{font-size:12px;color:var(--cyan);font-weight:800}.person p{font-size:13px}
+.timeline{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.phase{padding:20px;border-left:3px solid var(--gold)}.phase strong{font-size:14px}.phase p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+footer{padding:45px 0 70px;border-top:1px solid var(--line);color:#818ba2;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+#fx{position:fixed;inset:0;z-index:100;pointer-events:none;background:rgba(2,4,8,.1);display:none;align-items:center;justify-content:center;overflow:hidden}.fx.on{display:flex}.fxmsg{font-size:clamp(34px,8vw,90px);font-weight:950;letter-spacing:-.04em;text-align:center;opacity:0;transform:scale(.7);text-shadow:0 0 25px rgba(255,255,255,.55),0 0 70px rgba(255,215,106,.45);z-index:3}.fxmsg.show{animation:msg 2.8s ease forwards}@keyframes msg{12%{opacity:1;transform:scale(1)}72%{opacity:1;transform:scale(1.03)}100%{opacity:0;transform:scale(1.12)}}
+.burst{position:absolute;width:6px;height:6px;border-radius:50%;background:white;box-shadow:0 0 12px 3px white;animation:burst 2.1s ease-out forwards}
+@keyframes burst{0%{transform:translate(0,0) scale(.3);opacity:1}100%{transform:translate(var(--x),var(--y)) scale(.05);opacity:0}}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#101725;border:1px solid var(--line);padding:12px 16px;border-radius:13px;color:#dfe6f6;opacity:0;transition:.3s;z-index:120;font-size:13px}.toast.show{opacity:1;transform:translateX(-50%)}
+@media(max-width:850px){.navlinks{display:none}.menu{display:block}.hero-grid,.feature-grid,.prize,.people{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:1fr}.hero{padding-top:110px}.flag{min-height:120px;padding:25px 18px}}
+@media(max-width:520px){.container{width:min(94%,1160px)}.cards{grid-template-columns:1fr 1fr}.count{gap:5px}.time{padding:12px 2px}.time strong{font-size:21px}.navin{height:64px}section{padding:70px 0}.card,.status-card{padding:21px}.person{align-items:center}.avatar{width:64px;height:64px;border-radius:18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
 </head>
-
 <body>
+<nav><div class="container navin">
+  <a class="logo" href="#top">BANGLADESH <b>CLAN</b></a>
+  <div class="navlinks"><a href="#festival">Festival</a><a href="#scoring">Scoring</a><a href="#leaderboard">Leaderboard</a><a href="#rules">Rules</a><a href="#team">Team</a></div>
+  <button class="menu" onclick="toast('Use the section buttons below to explore the festival.')">☰</button>
+</div></nav>
 
-  <div class="festival-bg">
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+<main id="top">
+<section class="hero">
+ <div class="container hero-grid">
+  <div>
+   <div class="eyebrow">⚡ OFFICIAL BANGLADESH CLAN EVENT</div>
+   <h1>CLAN<br><span class="gradient">FESTIVAL 2026</span></h1>
+   <p>A competitive two-month celebration of war performance, Clan Capital, activity, growth, discipline and teamwork — built for the members of BANGLADESH CLAN.</p>
+   <div class="cta"><a class="btn primary" href="#festival">Explore Festival →</a><a class="btn ghost" href="#leaderboard">View Leaderboard</a></div>
   </div>
-
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="brand">
-        CLAN FESTIVAL 2026
-        <span>BANGLADESH CLAN</span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#festival">Festival</a>
-        <a href="#scoring">Scoring</a>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#prizes">Prizes</a>
-        <a href="#leaders">Leadership</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- FESTIVAL BANNER -->
-  <div class="banner-wrap">
-    <div class="festival-banner" id="festivalBanner">
-      <div class="banner-title">CLAN FESTIVAL 2026</div>
-      <div class="banner-subtitle">ORGANIZED BY BANGLADESH CLAN</div>
-    </div>
+  <div class="status-card">
+   <div class="status-top"><div><span class="dot"></span><span class="live">FESTIVAL STATUS</span></div><b>2026</b></div>
+   <div class="count">
+    <div class="time"><strong id="dd">--</strong><span>DAYS</span></div><div class="time"><strong id="hh">--</strong><span>HOURS</span></div><div class="time"><strong id="mm">--</strong><span>MIN</span></div><div class="time"><strong id="ss">--</strong><span>SEC</span></div>
+   </div>
+   <div class="meta"><div><span>REGISTRATION / PREPARATION</span>Now → 31 October 2026</div><div><span>OFFICIAL FESTIVAL</span>1 November → 31 December 2026</div><div><span>CLAN</span>BANGLADESH CLAN · #2LUCGQCCJ</div></div>
   </div>
+ </div>
+</section>
 
-  <!-- HERO -->
-  <main>
-    <div class="hero">
-      <div class="hero-content">
+<div class="banner-wrap">
+ <div class="container">
+  <div class="banner" id="festivalBanner" title="Tap the banner for fireworks">
+   <div class="flag"><div><h2>CLAN FESTIVAL 2026</h2><p>ORGANIZED BY BANGLADESH CLAN · TAP FOR FIREWORKS ✦</p></div></div>
+  </div>
+ </div>
+</div>
 
-        <div class="status">
-          <span class="status-dot"></span>
-          REGISTRATION OPEN
-        </div>
+<section id="festival"><div class="container">
+ <div class="section-head"><div class="kicker">The Event</div><h2>Built around the whole clan.</h2><p>Every major contribution matters. The festival combines individual performance with teamwork so that members from TH10 to max TH can compete fairly.</p></div>
+ <div class="feature-grid">
+  <div class="card"><h3>🏆 What is Clan Festival?</h3><p>CLAN FESTIVAL 2026 is an internal BANGLADESH CLAN competition focused on consistent performance, helpful activity and responsible teamwork.</p><div class="pillrow"><span class="pill">TH10+</span><span class="pill">War</span><span class="pill">CWL</span><span class="pill">Clan Capital</span><span class="pill">Teamwork</span></div></div>
+  <div class="card"><h3>🎯 Fair by design</h3><ul class="list"><li>Personal points + team contribution</li><li>Monthly and final leaderboard concept</li><li>Admin review before official publishing</li><li>Anti-cheat and tie-break rules</li></ul></div>
+ </div>
+</div></section>
 
-        <h1>CLAN<br>FESTIVAL</h1>
+<section id="scoring"><div class="container">
+ <div class="section-head"><div class="kicker">100 Point System</div><h2>Score where it matters.</h2><p>The current festival scoring framework balances competitive results, activity and clan culture.</p></div>
+ <div class="cards">
+  <div class="card score"><div class="num">30</div><h3>⚔️ Regular War</h3><p>War performance and contribution.</p></div>
+  <div class="card score"><div class="num">15</div><h3>🔥 CWL</h3><p>Competitive league contribution.</p></div>
+  <div class="card score"><div class="num">15</div><h3>🏰 Clan Capital</h3><p>Raid and capital teamwork.</p></div>
+  <div class="card score"><div class="num">10</div><h3>🎮 Clan Games</h3><p>Activity and participation.</p></div>
+  <div class="card score"><div class="num">10</div><h3>🤝 Donation</h3><p>Support for fellow members.</p></div>
+  <div class="card score"><div class="num">10</div><h3>📈 Growth</h3><p>Personal progress over time.</p></div>
+  <div class="card score"><div class="num">5</div><h3>🛡️ Discipline</h3><p>Reliability and rule compliance.</p></div>
+  <div class="card score"><div class="num">5</div><h3>🫱🏻‍🫲🏽 Teamwork</h3><p>Communication and clan spirit.</p></div>
+ </div>
+</div></section>
 
-        <div class="hero-clan">BANGLADESH CLAN 🇧🇩</div>
+<section id="leaderboard"><div class="container">
+ <div class="section-head"><div class="kicker">Live Competition</div><h2>Leaderboard.</h2><p>This visual preview is ready for the live Supabase leaderboard connection. Approved and verified members will appear here once points are being recorded.</p></div>
+ <div class="card lb"><table><thead><tr><th>#</th><th>Player</th><th>Tag</th><th>Points</th></tr></thead><tbody id="lbbody">
+  <tr><td class="rank">01</td><td>Festival leaderboard</td><td>—</td><td>Waiting</td></tr>
+  <tr><td class="rank">02</td><td>Supabase connection</td><td>—</td><td>Next phase</td></tr>
+  <tr><td class="rank">03</td><td>Live Clash data</td><td>—</td><td>Next phase</td></tr>
+ </tbody></table></div>
+</div></section>
 
-        <p class="tagline">
-          Together We Battle. Together We Grow. Together We Celebrate.
-        </p>
+<section><div class="container prize">
+ <div><div class="kicker">Rewards</div><h2>Play hard.<br>Earn your place.</h2><p style="color:var(--muted);line-height:1.7">Total prize value is planned around the festival pool and will be distributed according to the final approved award structure.</p><div class="pillrow"><span class="pill">Cash / Gift Card</span><span class="pill">Final Ranking</span><span class="pill">Team Recognition</span></div></div>
+ <div class="card" style="text-align:center"><div class="prize-value">৳1,500</div><div style="color:var(--muted);font-weight:800">PRIZES WORTH EQUIVALENT</div></div>
+</div></section>
 
-        <p class="dates">
-          Registration & Preparation: Now – October 31, 2026<br>
-          Official Festival: November 1 – December 31, 2026
-        </p>
+<section id="rules"><div class="container">
+ <div class="section-head"><div class="kicker">Eligibility & Rules</div><h2>Simple. Fair. Competitive.</h2></div>
+ <div class="timeline">
+  <div class="card phase"><strong>01 · TH10+</strong><p>Members should be Town Hall 10 or higher, with troops and base at least 85% max for the applicable level.</p></div>
+  <div class="card phase"><strong>02 · Verified members</strong><p>Registration is reviewed before a player becomes an official festival participant.</p></div>
+  <div class="card phase"><strong>03 · Honest scoring</strong><p>Points are recorded through approved festival scoring. Suspicious or manipulated results may be rejected.</p></div>
+  <div class="card phase"><strong>04 · Final approval</strong><p>Leaderboard publication and final awards are subject to admin review and tie-break rules.</p></div>
+ </div>
+</div></section>
 
-        <div class="actions">
-          <a href="#festival" class="btn btn-primary">JOIN THE FESTIVAL</a>
-          <a href="#leaderboard" class="btn">VIEW LEADERBOARD</a>
-          <a href="#scoring" class="btn">EXPLORE FESTIVAL</a>
-        </div>
+<section id="team"><div class="container">
+ <div class="section-head"><div class="kicker">Leadership</div><h2>Meet the people behind it.</h2><p>Official leadership and festival coordination for BANGLADESH CLAN.</p></div>
+ <div class="people">
+  <div class="card person"><div class="avatar">M</div><div><h3>MD. Mobarok Hossain</h3><div class="role">CLAN LEADER · BANGLADESH CLAN</div><p>Respected clan leader focused on unity, discipline, teamwork and long-term growth beyond simply winning wars.</p><p><b>Player:</b> #LRU8RU9YC</p></div></div>
+  <div class="card person"><div class="avatar">S</div><div><h3>Samir Hasan (Niloy)</h3><div class="role">CO-LEADER & OFFICIAL FESTIVAL AMBASSADOR</div><p>Festival coordination, member support, communication, updates and keeping the competition fair, organized and engaging.</p><p><b>Player:</b> #LQCPGYJVL</p></div></div>
+ </div>
+</div></section>
 
-      </div>
-    </div>
+<section><div class="container"><div class="card" style="text-align:center">
+ <div class="kicker">Need Help?</div><h2>Stay connected with BANGLADESH CLAN.</h2>
+ <p style="color:var(--muted)">For festival questions, registration support or official updates, contact the Festival Ambassador.</p>
+ <a class="btn primary" href="mailto:skredes09@gmail.com">Email Festival Team</a>
+</div></div></section>
+</main>
 
-    <!-- WHAT IS CLAN FESTIVAL -->
-    <section id="festival">
-      <div class="section-label">THE EXPERIENCE</div>
-      <h2 class="section-title">What is Clan Festival?</h2>
+<footer><div class="container foot"><div>© 2026 BANGLADESH CLAN · CLAN FESTIVAL 2026</div><div>#2LUCGQCCJ · Official Festival Hub</div></div></footer>
 
-      <p class="section-description">
-        A competitive and community-driven festival created for BANGLADESH CLAN.
-        Players earn points through wars, teamwork, growth, activity and support.
-      </p>
+<div id="fx"><div class="fxmsg" id="fxmsg"></div></div><div class="toast" id="toast"></div>
 
-      <div class="cards">
+<script>
+const festivalStart = new Date('2026-11-01T00:00:00+03:00').getTime();
+const festivalEnd = new Date('2027-01-01T00:00:00+03:00').getTime();
+function countdown(){
+ const now=Date.now(), target=now<festivalStart?festivalStart:festivalEnd, diff=Math.max(0,target-now);
+ const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
+ document.getElementById('dd').textContent=String(d).padStart(2,'0');
+ document.getElementById('hh').textContent=String(h).padStart(2,'0');
+ document.getElementById('mm').textContent=String(m).padStart(2,'0');
+ document.getElementById('ss').textContent=String(s).padStart(2,'0');
+}
+countdown();setInterval(countdown,1000);
 
-        <div class="card">
-          <div class="card-icon">⚔️</div>
-          <h3>War & CWL</h3>
-          <p>
-            Compete in regular Clan Wars and CWL while earning festival points.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🏰</div>
-          <h3>Clan Capital</h3>
-          <p>
-            Contribute to the clan capital and help the whole clan progress.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🤝</div>
-          <h3>Teamwork</h3>
-          <p>
-            Cooperation, support and positive contribution matter throughout the festival.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">📈</div>
-          <h3>Player Growth</h3>
-          <p>
-            Improve your performance, consistency and contribution over time.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SCORING -->
-    <section id="scoring">
-      <div class="section-label">100 POINT SYSTEM</div>
-      <h2 class="section-title">Fair Scoring</h2>
-
-      <p class="section-description">
-        Festival scoring is designed to reward both individual performance and teamwork.
-      </p>
-
-      <div class="score-grid">
-
-        <div class="score">
-          <strong>30</strong>
-          <span>Regular War</span>
-        </div>
-
-        <div class="score">
-          <strong>15</strong>
-          <span>CWL</span>
-        </div>
-
-        <div class="score">
-          <strong>15</strong>
-          <span>Clan Capital</span>
-        </div>
-
-        <div class="score">
-          <strong>10</strong>
-          <span>Clan Games / Activity</span>
-        </div>
-
-        <div class="score">
-          <strong>10</strong>
-          <span>Donation / Support</span>
-        </div>
-
-        <div class="score">
-          <strong>10</strong>
-          <span>Personal Growth</span>
-        </div>
-
-        <div class="score">
-          <strong>5</strong>
-          <span>Discipline</span>
-        </div>
-
-        <div class="score">
-          <strong>5</strong>
-          <span>Teamwork</span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- LEADERBOARD -->
-    <section id="leaderboard">
-      <div class="section-label">LIVE RANKINGS</div>
-      <h2 class="section-title">Leaderboard</h2>
-
-      <p class="section-description">
-        Live festival rankings will be connected to the secure backend and Clash of Clans data.
-      </p>
-
-      <div class="leaderboard">
-
-        <div class="leader-row leader-head">
-          <div>Rank</div>
-          <div>Player</div>
-          <div class="points">Points</div>
-        </div>
-
-        <div class="leader-row">
-          <div>#1</div>
-          <div>Festival Leaderboard</div>
-          <div class="points">—</div>
-        </div>
-
-        <div class="leader-row">
-          <div>#2</div>
-          <div>Awaiting Festival Data</div>
-          <div class="points">—</div>
-        </div>
-
-        <div class="leader-row">
-          <div>#3</div>
-          <div>Awaiting Festival Data</div>
-          <div class="points">—</div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- PRIZES -->
-    <section id="prizes">
-      <div class="section-label">REWARDS</div>
-      <h2 class="section-title">Festival Prizes</h2>
-
-      <div class="prize-box">
-        <div>PRIZES WORTH</div>
-        <div class="prize-value">৳1,500</div>
-        <div class="prize-note">
-          Equivalent total prize value across the festival awards.
-        </div>
-      </div>
-    </section>
-
-    <!-- LEADERSHIP -->
-    <section id="leaders">
-      <div class="section-label">THE PEOPLE BEHIND THE FESTIVAL</div>
-      <h2 class="section-title">Festival Leadership</h2>
-
-      <div class="leader-cards">
-
-        <div class="leader-card">
-          <div class="leader-role">CLAN LEADER</div>
-          <div class="leader-name">MD. Mobarok Hossain</div>
-
-          <p class="leader-info">
-            Clan Leader of BANGLADESH CLAN. Dedicated to building a disciplined,
-            united and supportive clan where teamwork and growth matter as much as victory.
-          </p>
-
-          <br>
-
-          <p class="leader-info">
-            Clan Tag: <strong>#2LUCGQCCJ</strong><br>
-            Player Tag: <strong>#LRU8RU9YC</strong>
-          </p>
-        </div>
-
-        <div class="leader-card">
-          <div class="leader-role">CO-LEADER & OFFICIAL FESTIVAL AMBASSADOR</div>
-          <div class="leader-name">Samir Hasan (Niloy)</div>
-
-          <p class="leader-info">
-            Responsible for festival coordination, member support, communication,
-            updates and helping maintain a fair, organized and engaging festival experience.
-          </p>
-
-          <br>
-
-          <p class="leader-info">
-            Clan Tag: <strong>#2LUCGQCCJ</strong><br>
-            Player Tag: <strong>#LQCPGYJVL</strong>
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FIREWORK OVERLAY -->
-  <div id="fireworks"></div>
-
-  <footer>
-    <strong>CLAN FESTIVAL 2026</strong><br>
-    BANGLADESH CLAN • #2LUCGQCCJ<br><br>
-    Official Festival Hub
-  </footer>
-
-  <script>
-    const 
+let fxBusy=false,seq=0;
+const messages=['HURRAY','CLAN FESTIVAL 2026','BANGLADESH CLAN','GOOD LUCK','ALL THE BEST'];
+function fireworks(){
+ if(fxBusy)return; fxBusy=true;
+ const fx=document.getElementById('fx'), msg=document.getElementById('fxmsg');
+ fx.classList.add('on'); msg.textContent=messages[seq++%messages.length]; msg.className='fxmsg show';
+ const bursts=8;
+ for(let i=0;i<bursts;i++){
+   setTimeout(()=>{
+    const cx=15+Math.random()*70,cy=18+Math.random()*48;
+    const count=35+Math.floor(Math.random()*30);
+    for(let j=0;j<count;j++){
+      const p=document.createElement('i');p.className='burst';
+      const a=(Math.PI*2*j/count)+(Math.random()-.5)*.2, r=70+Math.random()*170;
+      p.style.left=cx+'%';p.style.top=cy+'%';p.style.setProperty('--x',(Math.cos(a)*r)+'px');p.style.setProperty('--y',(Math.sin(a)*r)+'px');
+      fx.appendChild(p);setTimeout(()=>p.remove(),2200);
+    }
+   },i*1200);
+ }
+ setTimeout(()=>{fx.classList.remove('on');msg.className='fxmsg';fxBusy=false},12000);
+ setTimeout(()=>{},15000);
+}
+document.getElementById('festivalBanner').addEventListener('click',fireworks);
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2600)}
+</script>
+</body>
+</html>
