@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="CLAN FESTIVAL 2026 — Official festival hub of BANGLADESH CLAN.">
+  <title>CLAN FESTIVAL 2026 | BANGLADESH CLAN</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080b12;
+      color: #f5f7fb;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* ---------- FESTIVAL BACKGROUND ---------- */
+
+    .festival-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 55, 95, .12), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(88, 120, 255, .12), transparent 30%),
+        radial-gradient(circle at 50% 85%, rgba(255, 190, 50, .08), transparent 32%),
+        #080b12;
+    }
+
+    .glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .18;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    .glow.one {
+      background: #ff315c;
+      left: -120px;
+      top: 20%;
+    }
+
+    .glow.two {
+      background: #446dff;
+      right: -130px;
+      top: 50%;
+      animation-delay: -5s;
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(60px, -45px, 0); }
+    }
+
+    /* ---------- TOP NAV ---------- */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 11, 18, .78);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 15px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 10px;
+      color: #aeb7c9;
+      letter-spacing: 2px;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+      color: #c9d0dd;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* ---------- HANGING BANNER ---------- */
+
+    .banner-wrap {
+      padding: 22px 14px 5px;
+      perspective: 900px;
+    }
+
+    .festival-banner {
+      position: relative;
+      max-width: 900px;
+      margin: auto;
+      padding: 25px 20px 28px;
+      text-align: center;
+      border-radius: 10px 10px 16px 16px;
+      background:
+        linear-gradient(135deg, #9e102c, #d62248 45%, #94132f);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow:
+        0 25px 50px rgba(0,0,0,.35),
+        inset 0 0 30px rgba(255,255,255,.08);
+      transform-origin: top center;
+      animation: bannerSwing 4.5s ease-in-out infinite;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .festival-banner::before,
+    .festival-banner::after {
+      content: "🎈";
+      position: absolute;
+      top: 12px;
+      font-size: 24px;
+      animation: balloonFloat 2.8s ease-in-out infinite;
+    }
+
+    .festival-banner::before {
+      left: 7%;
+    }
+
+    .festival-banner::after {
+      right: 7%;
+      animation-delay: -1.2s;
+    }
+
+    @keyframes bannerSwing {
+      0%, 100% { transform: rotateX(0deg) rotateZ(-1deg); }
+      50% { transform: rotateX(2deg) rotateZ(1deg); }
+    }
+
+    @keyframes balloonFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    .banner-title {
+      font-size: clamp(23px, 5vw, 48px);
+      font-weight: 950;
+      letter-spacing: 2px;
+      text-shadow: 0 3px 15px rgba(0,0,0,.4);
+    }
+
+    .banner-subtitle {
+      margin-top: 7px;
+      font-size: clamp(11px, 2vw, 15px);
+      letter-spacing: 2px;
+      font-weight: 700;
+      opacity: .9;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      min-height: 680px;
+      padding: 90px 22px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border: 1px solid rgba(80,255,150,.25);
+      background: rgba(50,255,130,.07);
+      color: #7dffad;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #5dff9a;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #5dff9a;
+    }
+
+    h1 {
+      margin-top: 25px;
+      font-size: clamp(48px, 10vw, 105px);
+      line-height: .9;
+      font-weight: 950;
+      letter-spacing: -4px;
+      background: linear-gradient(120deg, #fff, #ffcf6e, #ff5b78, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-clan {
+      margin-top: 22px;
+      font-size: clamp(18px, 3vw, 29px);
+      font-weight: 800;
+      letter-spacing: 5px;
+    }
+
+    .tagline {
+      max-width: 650px;
+      margin: 20px auto 0;
+      color: #aeb7c9;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .dates {
+      margin-top: 25px;
+      color: #d9deea;
+      font-weight: 700;
+    }
+
+    .actions {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .25s;
+      background: rgba(255,255,255,.06);
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff315c, #ff7b43);
+      border: none;
+      box-shadow: 0 10px 30px rgba(255,49,92,.22);
+    }
+
+    /* ---------- SECTIONS ---------- */
+
+    section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 85px 22px;
+    }
+
+    .section-label {
+      color: #ff718c;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 5vw, 52px);
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: #9ea8ba;
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .card {
+      padding: 25px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 9px;
+    }
+
+    .card p {
+      color: #98a3b7;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* ---------- SCORING ---------- */
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .score {
+      padding: 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 15px;
+    }
+
+    .score strong {
+      display: block;
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    .score span {
+      color: #a2acbd;
+      font-size: 13px;
+    }
+
+    /* ---------- LEADERBOARD ---------- */
+
+    .leaderboard {
+      margin-top: 30px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,.035);
+    }
+
+    .leader-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 130px;
+      padding: 17px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .leader-row:last-child {
+      border-bottom: none;
+    }
+
+    .leader-head {
+      color: #8791a5;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .points {
+      text-align: right;
+      font-weight: 900;
+      color: #ffd16c;
+    }
+
+    /* ---------- PRIZE ---------- */
+
+    .prize-box {
+      margin-top: 30px;
+      padding: 45px 30px;
+      border-radius: 25px;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(255,180,50,.12), transparent 55%),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(255,196,82,.15);
+    }
+
+    .prize-value {
+      font-size: clamp(40px, 8vw, 78px);
+      font-weight: 950;
+      margin: 10px 0;
+      color: #ffd16c;
+    }
+
+    .prize-note {
+      color: #aab3c4;
+    }
+
+    /* ---------- LEADERS ---------- */
+
+    .leader-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .leader-card {
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .leader-role {
+      color: #ff718c;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .leader-name {
+      font-size: 27px;
+      margin: 9px 0;
+    }
+
+    .leader-info {
+      color: #9ea8ba;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      padding: 55px 22px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: #7e899d;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* ---------- FIREWORKS ---------- */
+
+    #fireworks {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      pointer-events: none;
+      display: none;
+      overflow: hidden;
+      background: rgba(0,0,0,.35);
+    }
+
+    #fireworks.active {
+      display: block;
+    }
+
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 15px 5px rgba(255,255,255,.8);
+    }
+
+    .firework-text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(.7);
+      text-align: center;
+      font-size: clamp(35px, 8vw, 95px);
+      font-weight: 950;
+      letter-spacing: 3px;
+      color: white;
+      text-shadow:
+        0 0 10px white,
+        0 0 25px #ff4e70,
+        0 0 50px #ff4e70;
+      opacity: 0;
+      animation: festivalText 2.5s ease-out forwards;
+    }
+
+    @keyframes festivalText {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.7);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.25);
+      }
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: white;
+      animation: particleFly 1.7s ease-out forwards;
+    }
+
+    @keyframes particleFly {
+      from {
+        transform: translate(0,0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translate(var(--x),var(--y)) scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .score-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .leader-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        min-height: 610px;
+        padding-top: 55px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .cards,
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leader-row {
+        grid-template-columns: 50px 1fr 80px;
+        padding: 15px;
+      }
+
+      section {
+        padding: 65px 18px;
+      }
+
+      .festival-banner {
+        padding: 20px 12px 23px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="festival-bg">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        CLAN FESTIVAL 2026
+        <span>BANGLADESH CLAN</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#festival">Festival</a>
+        <a href="#scoring">Scoring</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#prizes">Prizes</a>
+        <a href="#leaders">Leadership</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- FESTIVAL BANNER -->
+  <div class="banner-wrap">
+    <div class="festival-banner" id="festivalBanner">
+      <div class="banner-title">CLAN FESTIVAL 2026</div>
+      <div class="banner-subtitle">ORGANIZED BY BANGLADESH CLAN</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main>
+    <div class="hero">
+      <div class="hero-content">
+
+        <div class="status">
+          <span class="status-dot"></span>
+          REGISTRATION OPEN
+        </div>
+
+        <h1>CLAN<br>FESTIVAL</h1>
+
+        <div class="hero-clan">BANGLADESH CLAN 🇧🇩</div>
+
+        <p class="tagline">
+          Together We Battle. Together We Grow. Together We Celebrate.
+        </p>
+
+        <p class="dates">
+          Registration & Preparation: Now – October 31, 2026<br>
+          Official Festival: November 1 – December 31, 2026
+        </p>
+
+        <div class="actions">
+          <a href="#festival" class="btn btn-primary">JOIN THE FESTIVAL</a>
+          <a href="#leaderboard" class="btn">VIEW LEADERBOARD</a>
+          <a href="#scoring" class="btn">EXPLORE FESTIVAL</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WHAT IS CLAN FESTIVAL -->
+    <section id="festival">
+      <div class="section-label">THE EXPERIENCE</div>
+      <h2 class="section-title">What is Clan Festival?</h2>
+
+      <p class="section-description">
+        A competitive and community-driven festival created for BANGLADESH CLAN.
+        Players earn points through wars, teamwork, growth, activity and support.
+      </p>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">⚔️</div>
+          <h3>War & CWL</h3>
+          <p>
+            Compete in regular Clan Wars and CWL while earning festival points.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🏰</div>
+          <h3>Clan Capital</h3>
+          <p>
+            Contribute to the clan capital and help the whole clan progress.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h3>Teamwork</h3>
+          <p>
+            Cooperation, support and positive contribution matter throughout the festival.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h3>Player Growth</h3>
+          <p>
+            Improve your performance, consistency and contribution over time.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SCORING -->
+    <section id="scoring">
+      <div class="section-label">100 POINT SYSTEM</div>
+      <h2 class="section-title">Fair Scoring</h2>
+
+      <p class="section-description">
+        Festival scoring is designed to reward both individual performance and teamwork.
+      </p>
+
+      <div class="score-grid">
+
+        <div class="score">
+          <strong>30</strong>
+          <span>Regular War</span>
+        </div>
+
+        <div class="score">
+          <strong>15</strong>
+          <span>CWL</span>
+        </div>
+
+        <div class="score">
+          <strong>15</strong>
+          <span>Clan Capital</span>
+        </div>
+
+        <div class="score">
+          <strong>10</strong>
+          <span>Clan Games / Activity</span>
+        </div>
+
+        <div class="score">
+          <strong>10</strong>
+          <span>Donation / Support</span>
+        </div>
+
+        <div class="score">
+          <strong>10</strong>
+          <span>Personal Growth</span>
+        </div>
+
+        <div class="score">
+          <strong>5</strong>
+          <span>Discipline</span>
+        </div>
+
+        <div class="score">
+          <strong>5</strong>
+          <span>Teamwork</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section id="leaderboard">
+      <div class="section-label">LIVE RANKINGS</div>
+      <h2 class="section-title">Leaderboard</h2>
+
+      <p class="section-description">
+        Live festival rankings will be connected to the secure backend and Clash of Clans data.
+      </p>
+
+      <div class="leaderboard">
+
+        <div class="leader-row leader-head">
+          <div>Rank</div>
+          <div>Player</div>
+          <div class="points">Points</div>
+        </div>
+
+        <div class="leader-row">
+          <div>#1</div>
+          <div>Festival Leaderboard</div>
+          <div class="points">—</div>
+        </div>
+
+        <div class="leader-row">
+          <div>#2</div>
+          <div>Awaiting Festival Data</div>
+          <div class="points">—</div>
+        </div>
+
+        <div class="leader-row">
+          <div>#3</div>
+          <div>Awaiting Festival Data</div>
+          <div class="points">—</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRIZES -->
+    <section id="prizes">
+      <div class="section-label">REWARDS</div>
+      <h2 class="section-title">Festival Prizes</h2>
+
+      <div class="prize-box">
+        <div>PRIZES WORTH</div>
+        <div class="prize-value">৳1,500</div>
+        <div class="prize-note">
+          Equivalent total prize value across the festival awards.
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section id="leaders">
+      <div class="section-label">THE PEOPLE BEHIND THE FESTIVAL</div>
+      <h2 class="section-title">Festival Leadership</h2>
+
+      <div class="leader-cards">
+
+        <div class="leader-card">
+          <div class="leader-role">CLAN LEADER</div>
+          <div class="leader-name">MD. Mobarok Hossain</div>
+
+          <p class="leader-info">
+            Clan Leader of BANGLADESH CLAN. Dedicated to building a disciplined,
+            united and supportive clan where teamwork and growth matter as much as victory.
+          </p>
+
+          <br>
+
+          <p class="leader-info">
+            Clan Tag: <strong>#2LUCGQCCJ</strong><br>
+            Player Tag: <strong>#LRU8RU9YC</strong>
+          </p>
+        </div>
+
+        <div class="leader-card">
+          <div class="leader-role">CO-LEADER & OFFICIAL FESTIVAL AMBASSADOR</div>
+          <div class="leader-name">Samir Hasan (Niloy)</div>
+
+          <p class="leader-info">
+            Responsible for festival coordination, member support, communication,
+            updates and helping maintain a fair, organized and engaging festival experience.
+          </p>
+
+          <br>
+
+          <p class="leader-info">
+            Clan Tag: <strong>#2LUCGQCCJ</strong><br>
+            Player Tag: <strong>#LQCPGYJVL</strong>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FIREWORK OVERLAY -->
+  <div id="fireworks"></div>
+
+  <footer>
+    <strong>CLAN FESTIVAL 2026</strong><br>
+    BANGLADESH CLAN • #2LUCGQCCJ<br><br>
+    Official Festival Hub
+  </footer>
+
+  <script>
+    const 
