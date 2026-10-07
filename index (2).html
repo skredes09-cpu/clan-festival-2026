@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CLAN FESTIVAL 2026 · BANGLADESH CLAN</title>
+<meta name="description" content="Official hub for CLAN FESTIVAL 2026 by BANGLADESH CLAN: registration, live leaderboard, scoring, rules and prizes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120f0e;--panel:rgba(255,255,255,.06);--line:rgba(255,255,255,.14);--text:#f6f1ea;--mute:#b3aca4;--gold:#f5c542;--green:#34d399;--red:#f87171;--violet:#d4452f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"DM Sans",system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;
+background-image:radial-gradient(75vw 55vh at 50% -12%,rgba(232,80,46,.36),transparent),radial-gradient(55vw 45vh at 100% 8%,rgba(144,43,34,.30),transparent),radial-gradient(60vw 50vh at 0% 100%,rgba(50,204,176,.30),transparent),radial-gradient(45vw 40vh at 100% 90%,rgba(50,204,176,.22),transparent);background-attachment:fixed}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 18px 60px}
+section{padding:44px 0 6px}
+h2{font-size:clamp(1.6rem,5vw,2.2rem);margin-bottom:14px}
+.hero{padding-top:6px}
+.hero h1{font-size:clamp(2.6rem,12vw,5.4rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 span{display:block;color:var(--gold)}
+.sub{color:var(--mute);margin:12px 0 22px;max-width:48ch}
+.count{display:flex;gap:10px;margin:20px 0}
+.count div{flex:1;max-width:96px;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 4px;backdrop-filter:blur(10px)}
+.count b{display:block;font:800 1.7rem "Bricolage Grotesque",sans-serif}
+.count small{color:var(--mute);font-size:.75rem}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+a.btn,button{font:700 1rem "DM Sans",sans-serif;border:0;border-radius:12px;padding:12px 20px;cursor:pointer;text-decoration:none;display:inline-block}
+.primary{background:linear-gradient(135deg,var(--gold),#ff9d3d);color:#1b1230}
+.ghost{background:var(--panel);color:var(--text);border:1px solid var(--line)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;backdrop-filter:blur(14px)}
+label{display:block;font-size:.9rem;color:var(--mute);margin:12px 0 4px}
+input{width:100%;font:1rem "DM Sans",sans-serif;color:var(--text);background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.msg{margin-top:12px;min-height:1.4em;font-size:.95rem}
+.ok{color:var(--green)}.err{color:var(--red)}
+.who{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line)}
+th{color:var(--mute);font-weight:500;font-size:.85rem}
+td.n,th.n{text-align:right}
+.scroll{overflow-x:auto}
+.top1{color:var(--gold);font-weight:700}
+.pts{font:800 1.1rem "Bricolage Grotesque",sans-serif}
+ul{padding-left:20px;margin:8px 0}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.8rem;border:1px solid var(--line)}
+.pending{color:var(--gold)}.approved{color:var(--green)}.rejected{color:var(--red)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.person{background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden;backdrop-filter:blur(14px)}
+.person.amb{border-color:rgba(245,197,66,.6);box-shadow:0 0 40px rgba(245,197,66,.12)}
+.ph{position:relative;aspect-ratio:4/5;background:linear-gradient(160deg,#2a1d52,#14102a);display:grid;place-items:center}
+.ph .ini{font:800 3.4rem "Bricolage Grotesque",sans-serif;color:rgba(255,255,255,.35)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.pb{padding:18px}
+.role{display:inline-block;font-size:.8rem;font-weight:700;color:#1b1230;background:var(--gold);border-radius:99px;padding:3px 12px;margin-bottom:8px}
+.person.ldr .role{background:var(--violet);color:#fff}
+.pb h3{font-size:1.5rem;margin-bottom:8px}
+.pb p{margin:0 0 10px;color:var(--mute);font-size:.95rem}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.9rem}
+dt{color:var(--mute)}dd{margin:0;word-break:break-all}
+footer{text-align:center;color:var(--mute);font-size:.85rem;padding:30px 18px calc(30px + env(safe-area-inset-bottom))}
+.hidden{display:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.hang{display:flex;flex-direction:column;align-items:center;padding-top:env(safe-area-inset-top,0px);margin:0 -18px}
+#banner{width:min(100%,520px);display:block;cursor:pointer;touch-action:manipulation}
+.hint{margin:0 0 6px;font-size:.85rem;color:#fff;text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+#fxWrap{position:fixed;inset:0;z-index:50;pointer-events:none}
+#fx,#fxT,#fxB{position:absolute;inset:0;width:100%;height:100%}
+.sky{position:absolute;top:0;left:0;right:0;height:340px;overflow:hidden;z-index:0;pointer-events:none;background:linear-gradient(180deg,#2f86e6 0%,#69b3f3 45%,#a8d5fa 75%,#d6ecff 100%);-webkit-mask-image:linear-gradient(#000 40%,transparent 85%);mask-image:linear-gradient(#000 40%,transparent 85%)}
+.cloud{position:absolute;left:0;top:var(--t);width:var(--w);height:calc(var(--w)*.3);background:#fff;border-radius:99px;opacity:var(--o);filter:blur(5px);animation:drift var(--d) linear var(--dl) infinite;will-change:transform}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud::before{width:42%;height:150%;left:14%;top:-60%}
+.cloud::after{width:34%;height:120%;left:50%;top:-40%}
+@keyframes drift{from{transform:translateX(-300px)}to{transform:translateX(calc(100vw + 300px))}}
+@media (prefers-reduced-motion:reduce){.cloud{animation:none;left:var(--x)}}
+.skyline{position:absolute;top:190px;left:0;width:100%;height:120px;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(#000 62%,transparent);mask-image:linear-gradient(#000 62%,transparent)}
+.flag{transform-box:fill-box;transform-origin:0 50%;animation:flagw 2.6s ease-in-out infinite alternate}
+@keyframes flagw{from{transform:skewY(-9deg) scaleX(1)}to{transform:skewY(9deg) scaleX(.86)}}
+@media (prefers-reduced-motion:reduce){.flag{animation:none}}
+.art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.hero-video{object-position:center center;transform-origin:center top;will-change:opacity,transform,filter}
+.video-vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(7,8,14,.08) 0%,rgba(7,8,14,.04) 42%,rgba(18,15,14,.72) 100%);z-index:2}
+.sky::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,rgba(18,15,14,0),rgba(18,15,14,.96));pointer-events:none;z-index:3}
+#heroSky{height:clamp(320px,62vw,560px);-webkit-mask-image:none;mask-image:none;overflow:hidden;background:#090a10;transition:opacity .18s linear,filter .18s linear}
+#heroSky .hero-video{height:100%;width:100%;object-fit:cover}
+#heroSky .art{animation:none}
+#heroSky .cloud,#heroSky .skyline{display:none}
+
+.hasart .skyline{display:none}
+.hasart .cloud{display:none}
+.hasart .sky{height:clamp(320px,62vw,560px);border-bottom:1px solid rgba(245,197,66,.35);box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.hasart .hero-video{bottom:auto;height:100%;object-position:center center}
+.hasart .hint{display:table;margin:6px auto 0;background:rgba(18,12,10,.62);padding:2px 14px;border-radius:99px}
+.hasart .hero{padding-top:22px}
+footer a{color:var(--gold)}
+footer small{display:block;margin-top:8px;opacity:.75}
+
+.moonglow{display:none;position:absolute;left:50%;top:-30%;width:95%;height:130%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,96,48,.45),rgba(255,96,48,0));mix-blend-mode:screen;animation:moonp 5s ease-in-out infinite alternate;pointer-events:none}
+.hasart .moonglow{display:block}
+@keyframes moonp{from{opacity:.25}to{opacity:.85}}
+#embers{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hasart #embers{display:block}
+@media (prefers-reduced-motion:reduce){.hasart .art,.moonglow{animation:none}#embers{display:none!important}}
+</style>
+</head>
+<body>
+<div class="sky" id="heroSky" aria-hidden="true"><video class="art hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="festival-banner.png"><source src="hero-background.mp4" type="video/mp4"></video><div class="video-vignette"></div><div class="moonglow"></div><canvas id="embers"></canvas><i class="cloud" style="--w:230px;--t:24px;--o:0.9;--d:110s;--dl:-30s;--x:6vw"></i><i class="cloud" style="--w:150px;--t:92px;--o:0.75;--d:80s;--dl:-55s;--x:60vw"></i><i class="cloud" style="--w:280px;--t:150px;--o:0.8;--d:140s;--dl:-95s;--x:30vw"></i><i class="cloud" style="--w:120px;--t:40px;--o:0.65;--d:70s;--dl:-12s;--x:75vw"></i><i class="cloud" style="--w:190px;--t:200px;--o:0.6;--d:100s;--dl:-70s;--x:48vw"></i><i class="cloud" style="--w:100px;--t:120px;--o:0.55;--d:65s;--dl:-40s;--x:85vw"></i></div>
+<svg class="skyline" viewBox="0 0 800 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="skg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b1763"/><stop offset="1" stop-color="#120f0e"/></linearGradient></defs>
+<g fill="url(#skg)"><rect x="0" y="80" width="800" height="40"/><path d="M0 78H800" stroke="#2b1763" stroke-width="9" stroke-dasharray="11 8"/>
+<rect x="58" y="42" width="38" height="78"/><polygon points="53,42 77,14 101,42"/>
+<rect x="188" y="54" width="42" height="66"/><polygon points="183,54 209,28 235,54"/>
+<rect x="352" y="32" width="96" height="88"/><polygon points="344,32 400,2 456,32"/><rect x="372" y="48" width="12" height="18" fill="#120f0e" opacity=".6"/><rect x="416" y="48" width="12" height="18" fill="#120f0e" opacity=".6"/>
+<rect x="540" y="50" width="38" height="70"/><polygon points="535,50 559,24 583,50"/>
+<rect x="676" y="38" width="46" height="82"/><polygon points="671,38 699,10 727,38"/></g>
+<g fill="#f5c542"><path class="flag" d="M77 14V0l17 5-17 5z"/><path class="flag" d="M209 28V14l17 5-17 5z"/><path class="flag" d="M400 2V-10l19 5-19 5z"/><path class="flag" d="M559 24V10l17 5-17 5z"/><path class="flag" d="M699 10V-4l17 5-17 5z"/></g></svg>
+<main>
+
+<div class="hang">
+  <canvas id="banner" role="button" tabindex="0" aria-label="CLAN FESTIVAL 2026, organized by BANGLADESH CLAN. Activate for fireworks."></canvas>
+  <p class="hint" id="hint">Tap the banner for fireworks</p>
+</div>
+<div id="fxWrap" aria-hidden="true"><canvas id="fxB"></canvas><canvas id="fx"></canvas><canvas id="fxT"></canvas></div>
+
+<section class="hero">
+  <h1>CLAN FESTIVAL<span>2026</span></h1>
+  <p class="sub">The official internal competition of BANGLADESH CLAN. 1 November to 31 December 2026.</p>
+  <div class="btns">
+    <a class="btn primary" href="#join">Register now</a>
+    <a class="btn ghost" href="#board">View leaderboard</a>
+    <a class="btn ghost" href="more.html">More to know</a>
+  </div>
+</section>
+
+<section id="join">
+  <h2>Registration</h2>
+  <div class="panel">
+    <div id="authBox">
+      <p class="sub" style="margin-top:0">Create an account and log in, then submit your player tag. Once an admin verifies you, you become an official participant.</p>
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="email" inputmode="email">
+      <label for="pass">Password (at least 6 characters)</label>
+      <input id="pass" type="password" autocomplete="current-password">
+      <div class="row">
+        <button class="primary" id="btnLogin" type="button">Log in</button>
+        <button class="ghost" id="btnSignup" type="button">Create account</button>
+      </div>
+      <div class="msg" id="authMsg" role="status"></div>
+    </div>
+
+    <div id="regBox" class="hidden">
+      <div class="who"><span>Logged in as <b id="whoEmail"></b></span><button class="ghost" id="btnLogout" type="button">Log out</button></div>
+      <label for="ptag">Player tag (for example #LQCPGYJVL)</label>
+      <input id="ptag" autocapitalize="characters" autocomplete="off" maxlength="15">
+      <label for="pname">In-game name</label>
+      <input id="pname" autocomplete="off" maxlength="40">
+      <div class="row"><button class="primary" id="btnReg" type="button">Submit registration</button></div>
+      <div class="msg" id="regMsg" role="status"></div>
+      <h3 style="font-size:1.1rem;margin-top:18px">Your registrations</h3>
+      <div id="myRegs" class="sub" style="margin:6px 0 0">Loading...</div>
+    </div>
+  </div>
+</section>
+
+<section id="board">
+  <h2>Leaderboard</h2>
+  <div class="panel">
+    <div class="scroll"><table>
+      <thead><tr><th class="n">#</th><th>Player</th><th>Tag</th><th class="n">Points</th></tr></thead>
+      <tbody id="lb"><tr><td colspan="4">Loading...</td></tr></tbody>
+    </table></div>
+    <div class="row"><button class="ghost" id="btnRefresh" type="button">Refresh</button></div>
+    <div class="msg" id="lbMsg" role="status"></div>
+  </div>
+</section>
+
+<section id="score">
+  <h2>Scoring (100 points)</h2>
+  <div class="panel scroll"><table>
+    <tbody>
+      <tr><td>Regular War</td><td class="n pts">30</td></tr>
+      <tr><td>CWL</td><td class="n pts">15</td></tr>
+      <tr><td>Clan Capital</td><td class="n pts">15</td></tr>
+      <tr><td>Clan Games / Activity</td><td class="n pts">10</td></tr>
+      <tr><td>Donation / Support</td><td class="n pts">10</td></tr>
+      <tr><td>Personal Growth</td><td class="n pts">10</td></tr>
+      <tr><td>Discipline</td><td class="n pts">5</td></tr>
+      <tr><td>Teamwork</td><td class="n pts">5</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="prize">
+  <h2>Prizes</h2>
+  <div class="panel"><p style="margin:0"><b>PRIZES WORTH ৳1,500 EQUIVALENT</b></p>
+  <p class="sub" style="margin:8px 0 0">An equivalent reward worth ৳1,500. The final distribution will be announced before the final awards.</p></div>
+</section>
+
+<section id="rules">
+  <h2>Rules and fair play</h2>
+  <div class="panel"><ul>
+    <li>Open to Town Hall 10+ players with troops and base at least 85% of max for their level.</li>
+    <li>October is registration only. Official scoring starts on 1 November 2026.</li>
+    <li>Leaderboard points are reviewed and approved by an admin.</li>
+    <li>Cheating or manipulating results can lead to score rejection or disqualification.</li>
+  </ul></div>
+</section>
+
+</main>
+<footer>CLAN FESTIVAL 2026 · Organized by BANGLADESH CLAN · <a href="more.html">More to know</a><small>This material is unofficial and is not endorsed by Supercell. For more information see Supercell's Fan Content Policy: www.supercell.com/fan-content-policy. Clash of Clans is a trademark of Supercell.</small></footer>
+
+<script>
+(function(){
+  const sky=document.getElementById("heroSky"),video=document.getElementById("heroVideo");
+  if(!sky||!video)return;
+  document.body.classList.add("hasart");
+  video.play().catch(()=>{});
+  let ticking=false;
+  function updateHero(){
+    ticking=false;
+    const h=Math.max(sky.offsetHeight,1),y=Math.max(0,window.scrollY),p=Math.min(1,y/(h*.92));
+    const fade=Math.pow(p,1.05),opacity=1-.9*fade,blur=1.8*fade,scale=1+.035*fade,shift=-10*fade;
+    sky.style.opacity=opacity.toFixed(3);
+    sky.style.filter=`blur(${blur.toFixed(2)}px)`;
+    video.style.transform=`translateY(${shift.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+  }
+  function request(){if(ticking)return;ticking=true;requestAnimationFrame(updateHero)}
+  addEventListener("scroll",request,{passive:true});
+  addEventListener("resize",request,{passive:true});
+  request();
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SUPABASE_URL = "https://swvhnjzqvzooifyugujb.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3dmhuanpxdnpvb2lmeXVndWpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTExMjcxODAsImV4cCI6MjEwNjcwMzE4MH0.eblpd1-RSHwBh1xTTDXyDX4gUpJW7UMsjE0MgPsS-Lw";
+
+const $ = id => document.getElementById(id);
+const say = (id, text, cls) => { const e = $(id); e.textContent = text; e.className = "msg " + (cls || ""); };
+let sb = null;
+
+
+/* Leaderboard */
+async function loadBoard(){
+  const body = $("lb");
+  const { data, error } = await sb.rpc("get_public_leaderboard");
+  body.textContent = "";
+  if (error){ say("lbMsg", "Could not load the leaderboard: " + error.message, "err"); return; }
+  say("lbMsg", "");
+  if (!data || !data.length){
+    const tr = body.insertRow(), td = tr.insertCell(); td.colSpan = 4;
+    td.textContent = "No verified players yet. Approved players will appear here."; return;
+  }
+  data.forEach(r => {
+    const tr = body.insertRow();
+    const c0 = tr.insertCell(); c0.className = "n" + (r.rank === 1 ? " top1" : ""); c0.textContent = r.rank;
+    tr.insertCell().textContent = r.player_name;
+    tr.insertCell().textContent = r.player_tag;
+    const c3 = tr.insertCell(); c3.className = "n pts"; c3.textContent = r.festival_points;
+  });
+}
+
+/* My registrations */
+async function loadMine(){
+  const box = $("myRegs");
+  const { data, error } = await sb.from("festival_registrations")
+    .select("player_tag,player_name,status,verification_note,submitted_at").order("submitted_at", { ascending:false });
+  box.textContent = "";
+  if (error){ box.textContent = "Could not load: " + error.message; return; }
+  if (!data.length){ box.textContent = "You have not submitted anything yet."; return; }
+  data.forEach(r => {
+    const p = document.createElement("p"); p.style.margin = "6px 0";
+    const s = document.createElement("span"); s.className = "tag " + r.status; s.textContent = r.status;
+    p.append(r.player_name + " (" + r.player_tag + ") ", s);
+    if (r.verification_note) p.append(" · " + r.verification_note);
+    box.appendChild(p);
+  });
+}
+
+/* Auth UI */
+function showSession(session){
+  const on = !!session;
+  $("authBox").classList.toggle("hidden", on);
+  $("regBox").classList.toggle("hidden", !on);
+  if (on){ $("whoEmail").textContent = session.user.email; loadMine(); }
+}
+function creds(){
+  const email = $("email").value.trim(), password = $("pass").value;
+  if (!email || password.length < 6){ say("authMsg", "Enter a valid email and a password of at least 6 characters.", "err"); return null; }
+  return { email, password };
+}
+
+function init(){
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  sb.auth.onAuthStateChange((_e, session) => showSession(session));
+  sb.auth.getSession().then(({ data }) => showSession(data.session));
+  loadBoard();
+
+  $("btnRefresh").onclick = loadBoard;
+  $("btnLogin").onclick = async () => {
+    const c = creds(); if (!c) return; say("authMsg", "Please wait...");
+    const { error } = await sb.auth.signInWithPassword(c);
+    say("authMsg", error ? "Login failed: " + error.message : "", "err");
+  };
+  $("btnSignup").onclick = async () => {
+    const c = creds(); if (!c) return; say("authMsg", "Please wait...");
+    const { data, error } = await sb.auth.signUp(c);
+    if (error) say("authMsg", "Could not create the account: " + error.message, "err");
+    else if (!data.session) say("authMsg", "Account created. Open the confirmation link sent to your email, then log in.", "ok");
+  };
+  $("btnLogout").onclick = () => sb.auth.signOut();
+  $("btnReg").onclick = async () => {
+    let tag = $("ptag").value.trim().toUpperCase().replace(/O/g, "0");
+    if (tag && tag[0] !== "#") tag = "#" + tag;
+    const name = $("pname").value.trim();
+    if (!/^#[0-9A-Z]{4,14}$/.test(tag) || !name){ say("regMsg", "Enter a valid player tag and your in-game name.", "err"); return; }
+    const { data: { user } } = await sb.auth.getUser();
+    say("regMsg", "Submitting...");
+    const { error } = await sb.from("festival_registrations").insert({ player_tag: tag, player_name: name, user_id: user.id });
+    if (error) say("regMsg", "Could not submit: " + (error.code === "23505" ? "You already have a pending registration." : error.message), "err");
+    else { say("regMsg", "Submitted. An admin will review your registration.", "ok"); loadMine(); }
+  };
+}
+init();
+</script>
+
+
+<script>
+(function(){
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const cv=document.getElementById("banner"),cx=cv.getContext("2d"),hint=document.getElementById("hint");
+const FT=s=>`800 ${s}px "Bricolage Grotesque","Arial Black",Impact,sans-serif`;
+const cl=(v,a,b)=>Math.max(a,Math.min(b,v)),rnd=(a,b)=>a+Math.random()*(b-a),pick=a=>a[Math.floor(Math.random()*a.length)];
+let dpr,W,H,BW,BH,ox,oy,L,tex,bal=[],SP=[],vis=true,t=0,lastT=0,lastY=scrollY,ang=0,angV=0,boost=0,dirS=0;
+
+/* ---------- Banner artwork (drawn once) ---------- */
+function mkTex(){
+  tex=document.createElement("canvas");tex.width=BW;tex.height=BH;
+  const q=tex.getContext("2d"),img=new Image();
+  img.onload=()=>{
+    q.clearRect(0,0,BW,BH);
+    const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height;
+    const scale=Math.max(BW/iw,BH/ih),dw=iw*scale,dh=ih*scale;
+    q.drawImage(img,(BW-dw)/2,(BH-dh)/2,dw,dh);
+    const gr=q.createLinearGradient(0,0,0,BH);gr.addColorStop(0,"rgba(255,220,120,.04)");gr.addColorStop(.55,"rgba(0,0,0,0)");gr.addColorStop(1,"rgba(0,0,0,.18)");
+    q.fillStyle=gr;q.fillRect(0,0,BW,BH);
+  };
+  img.onerror=()=>{
+    q.fillStyle="#21140e";q.fillRect(0,0,BW,BH);
+    q.fillStyle="#ffd24a";q.font=FT(Math.max(18,BH*.2));q.textAlign="center";q.textBaseline="middle";q.fillText("CLAN FESTIVAL 2026",BW/2,BH*.45);
+    q.font=`700 ${Math.max(10,BH*.07)}px "DM Sans",system-ui,sans-serif`;q.fillStyle="#f3e9ff";q.fillText("BANGLADESH CLAN",BW/2,BH*.66);
+  };
+  img.src="festival-banner.png";
+}
+function build(){
+  dpr=Math.min(devicePixelRatio||1,2);
+  const cw=Math.min(cv.parentElement.clientWidth,520);
+  BW=Math.round(cw*.72*dpr);BH=Math.round(cw*.32*dpr);L=cw*.1*dpr;
+  W=Math.round(cw*dpr);H=Math.round(L+BH+cw*.12*dpr);
+  cv.width=W;cv.height=H;cv.style.height=H/dpr+"px";
+  ox=(W-BW)/2;oy=L+4*dpr;
+  const BC=["#f5c542","#e11d48","#10b981","#8b5cf6","#38bdf8","#fb923c"],BO=[[-.07,-.17,.046],[-.03,-.265,.04],[-.085,-.065,.036]];
+  bal=[];[0,1].forEach(sd=>BO.forEach((o,k)=>{const sg=sd?-1:1;bal.push({sd,dx:o[0]*sg*W,dy:o[1]*W,r:o[2]*W,c:BC[(k*2+sd)%6],ph:Math.random()*6,x:0,y:0,vx:0,init:false})}));
+  SP=Array.from({length:10},(_,i)=>({u:.1+((i*47)%80)/100,v:.12+((i*31)%65)/100,f:.9+((i*13)%7)*.15,p:i*1.9}));
+  mkTex();draw(0);
+}
+/* smooth traveling ripple: amplitude grows from the rod down to the tail */
+function wave(u){
+  const env=Math.pow(u,1.4),A=BW*.02*(1+boost*.6),ph=u*5-t*2.2*(1+.35*dirS),lag=-cl(angV,-.6,.6);
+  return {off:A*env*Math.sin(ph)+lag*BW*.035*Math.pow(u,1.3),sc:1-.04*env*(.5+.5*Math.sin(ph+1.1)),sh:Math.cos(ph)*env};
+}
+function draw(dt){
+  cx.clearRect(0,0,W,H);
+  const dxr=L*Math.sin(ang),dy=L*(1-Math.cos(ang)),step=1,top=Math.round(oy+dy);
+  for(let y=0;y<BH;y+=step){
+    const u=(y+step/2)/BH,w=wave(u),hh=Math.min(step+1,BH-y),dw=BW*w.sc,dx=ox+dxr+w.off+(BW-dw)/2,yy=top+y;
+    cx.globalCompositeOperation="source-over";cx.drawImage(tex,0,y,BW,hh,dx,yy,dw,hh);
+    cx.globalCompositeOperation="source-atop";
+    cx.fillStyle=w.sh>0?`rgba(255,255,255,${.14*w.sh})`:`rgba(0,0,0,${-.24*w.sh})`;cx.fillRect(dx,yy,dw,hh);
+  }
+  cx.globalCompositeOperation="source-over";
+  {const per=5.5,ph=(t%per)/per;if(ph<.28){const sx=ox-BW*.2+BW*1.5*(ph/.28),bw=BW*.22;
+    cx.globalCompositeOperation="source-atop";cx.save();cx.setTransform(1,0,-.3,1,.3*(top+BH/2),0);
+    const sg=cx.createLinearGradient(sx-bw,0,sx+bw,0);sg.addColorStop(0,"rgba(255,255,255,0)");sg.addColorStop(.5,"rgba(255,246,214,.6)");sg.addColorStop(1,"rgba(255,255,255,0)");
+    cx.fillStyle=sg;cx.fillRect(sx-bw,top-4,bw*2,BH+8);cx.restore();cx.globalCompositeOperation="source-over"}}
+  const rodY=L+dy,rx0=ox+dxr-6*dpr,rx1=ox+BW+dxr+6*dpr;cx.lineCap="round";
+  [ox+BW*.06,ox+BW*.94].forEach(x=>{cx.strokeStyle="rgba(60,30,0,.55)";cx.lineWidth=4*dpr;cx.beginPath();cx.moveTo(x,0);cx.lineTo(x+dxr,rodY);cx.stroke();cx.strokeStyle="#e8c25a";cx.lineWidth=2*dpr;cx.stroke()});
+  const rg=cx.createLinearGradient(0,rodY-4*dpr,0,rodY+4*dpr);rg.addColorStop(0,"#fff0b3");rg.addColorStop(.5,"#d4a017");rg.addColorStop(1,"#7a5200");
+  cx.strokeStyle=rg;cx.lineWidth=8*dpr;cx.beginPath();cx.moveTo(rx0,rodY);cx.lineTo(rx1,rodY);cx.stroke();
+  [rx0,rx1].forEach(x=>{const fg=cx.createRadialGradient(x-2*dpr,rodY-2*dpr,1,x,rodY,7*dpr);fg.addColorStop(0,"#fff6cf");fg.addColorStop(.6,"#d4a017");fg.addColorStop(1,"#7a5200");cx.fillStyle=fg;cx.beginPath();cx.arc(x,rodY,6.5*dpr,0,6.283);cx.fill()});
+  /* balloons tied to the two tail tips */
+  const wb=wave(1),bl=ox+dxr+wb.off+(BW-BW*wb.sc)/2,anc=[[bl,top+BH],[bl+BW*wb.sc,top+BH]],k=1-Math.exp(-4.5*dt);
+  bal.forEach(b=>{
+    const a=anc[b.sd],tx=a[0]+b.dx+Math.sin(t*.8+b.ph)*.009*W,ty=a[1]+b.dy+Math.cos(t*1.05+b.ph)*.011*W;
+    if(!b.init){b.x=tx;b.y=ty;b.init=true}
+    const nx=b.x+(tx-b.x)*k;b.vx+=((dt?(nx-b.x)/dt:0)-b.vx)*.12;b.x=nx;b.y+=(ty-b.y)*k;
+    b.x=cl(b.x,b.r,W-b.r);
+    const tilt=cl(-b.vx*.0012,-.28,.28)+Math.sin(t*.8+b.ph)*.04,kx=b.x+Math.sin(tilt)*b.r*1.1,ky=b.y+Math.cos(tilt)*b.r*1.1;
+    cx.strokeStyle="rgba(255,255,255,.9)";cx.lineWidth=1.3*dpr;cx.beginPath();cx.moveTo(a[0],a[1]);
+    cx.quadraticCurveTo((a[0]+kx)/2-cl(b.vx*.02,-.03*W,.03*W),(a[1]+ky)/2+.035*W,kx,ky);cx.stroke();
+    cx.save();cx.translate(b.x,b.y);cx.rotate(tilt);
+    cx.fillStyle=b.c;cx.beginPath();cx.ellipse(0,0,b.r*.88,b.r*1.08,0,0,6.283);cx.fill();
+    const gg=cx.createRadialGradient(-b.r*.3,-b.r*.4,b.r*.05,0,0,b.r*1.15);gg.addColorStop(0,"rgba(255,255,255,.6)");gg.addColorStop(.35,"rgba(255,255,255,0)");gg.addColorStop(1,"rgba(0,0,0,.4)");
+    cx.fillStyle=gg;cx.fill();
+    cx.fillStyle="rgba(255,255,255,.75)";cx.beginPath();cx.ellipse(-b.r*.32,-b.r*.5,b.r*.14,b.r*.26,-.5,0,6.283);cx.fill();
+    cx.fillStyle=b.c;cx.beginPath();cx.moveTo(0,b.r*1.04);cx.lineTo(-b.r*.13,b.r*1.26);cx.lineTo(b.r*.13,b.r*1.26);cx.fill();
+    cx.restore();
+  });
+  cx.globalCompositeOperation="lighter";
+  SP.forEach(s=>{
+    const k=Math.pow(Math.max(0,Math.sin(t*s.f+s.p)),8);if(k<.02)return;
+    const w=wave(s.v),px=ox+dxr+w.off+(BW-BW*w.sc)/2+s.u*BW*w.sc,py=top+s.v*BH,r=BW*.03*k;
+    cx.fillStyle="rgba(255,244,200,"+(.9*k)+")";cx.beginPath();cx.moveTo(px,py-r);cx.quadraticCurveTo(px,py,px+r,py);cx.quadraticCurveTo(px,py,px,py+r);cx.quadraticCurveTo(px,py,px-r,py);cx.quadraticCurveTo(px,py,px,py-r);cx.fill();
+    const rg2=cx.createRadialGradient(px,py,0,px,py,r*1.6);rg2.addColorStop(0,"rgba(255,220,120,"+(.5*k)+")");rg2.addColorStop(1,"rgba(255,220,120,0)");cx.fillStyle=rg2;cx.fillRect(px-r*2,py-r*2,r*4,r*4);
+  });
+  for(let i=0;i<18;i++){
+    const sp=.035+.02*(i%3),yy=H-(((i*53)%100)/100*H+t*sp*H)%H,xx=(((i*37)%100)/100)*W+Math.sin(t*.7+i)*.02*W,tw=.35+.65*Math.abs(Math.sin(t*1.3+i*1.7));
+    cx.fillStyle=i%2?"rgba(255,224,130,"+.8*tw+")":"rgba(255,255,255,"+.7*tw+")";cx.beginPath();cx.arc(xx,yy,(1+(i%3)*.6)*dpr,0,6.283);cx.fill();
+  }
+  cx.globalCompositeOperation="destination-over";
+  {const gx=ox+BW/2+dxr,gy=top+BH*.5,a=.30+.12*Math.sin(t*1.6);cx.save();cx.translate(gx,gy);cx.scale(1.35,.8);
+    const ag=cx.createRadialGradient(0,0,BW*.1,0,0,BW*.7);ag.addColorStop(0,"rgba(255,214,90,"+a+")");ag.addColorStop(.55,"rgba(139,92,246,"+a*.55+")");ag.addColorStop(1,"rgba(139,92,246,0)");
+    cx.fillStyle=ag;cx.fillRect(-BW,-BW,BW*2,BW*2);cx.restore()}
+  cx.globalCompositeOperation="source-over";
+}
+function loop(now){
+  const dt=Math.min((now-lastT)/1000||1/60,1/30);lastT=now;t+=dt;
+  if(vis&&!document.hidden&&!reduce){
+    angV+=(-ang*14-angV*3.2+.5*(Math.sin(t*.9)+.5*Math.sin(t*1.9)))*dt;
+    ang=cl(ang+angV*dt,-.16,.16);boost*=Math.exp(-1.6*dt);dirS*=Math.exp(-1.4*dt);
+    draw(dt);
+  }
+  requestAnimationFrame(loop);
+}
+addEventListener("scroll",()=>{
+  const dy=scrollY-lastY;lastY=scrollY;if(!dy||reduce)return;
+  const dir=Math.sign(dy),sp=Math.min(Math.abs(dy),80)/80;
+  angV+=dir*(.2+.45*sp)*(dir<0?1.25:1);boost=Math.min(boost+sp*.5,1);dirS+=(dir-dirS)*.5;
+},{passive:true});
+new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(cv);
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(build,200)});
+build();document.fonts&&document.fonts.ready.then(()=>{mkTex();draw(0)});requestAnimationFrame(loop);
+
+/* ---------- Fireworks ---------- */
+const fc=document.getElementById("fx"),f=fc.getContext("2d"),ftc=document.getElementById("fxT"),g=ftc.getContext("2d"),bcv=document.getElementById("fxB"),bcx=bcv.getContext("2d");
+const MSG=["HURRAY","CLAN FESTIVAL 2026","BANGLADESH CLAN","GOOD LUCK","ALL THE BEST"];
+const PAL=["#ff4d5e","#34d399","#ffd24a","#a78bfa","#ffffff","#ff9d3d","#5eead4"];
+let mi=0,busyUntil=0,running=false;const DEF="Tap the banner for fireworks";
+
+function drawBalloon(c,x,y,r,col,tilt,al){
+  c.save();c.globalAlpha=al;c.translate(x,y);c.rotate(tilt);
+  c.fillStyle=col;c.beginPath();c.ellipse(0,0,r*.88,r*1.08,0,0,6.283);c.fill();
+  const gg=c.createRadialGradient(-r*.3,-r*.4,r*.05,0,0,r*1.15);gg.addColorStop(0,"rgba(255,255,255,.6)");gg.addColorStop(.35,"rgba(255,255,255,0)");gg.addColorStop(1,"rgba(0,0,0,.4)");
+  c.fillStyle=gg;c.fill();c.fillStyle="rgba(255,255,255,.75)";c.beginPath();c.ellipse(-r*.32,-r*.5,r*.14,r*.26,-.5,0,6.283);c.fill();
+  c.fillStyle=col;c.beginPath();c.moveTo(0,r*1.04);c.lineTo(-r*.13,r*1.26);c.lineTo(r*.13,r*1.26);c.fill();c.restore();
+}
+function layout(msg,w,h){
+  const o=document.createElement("canvas").getContext("2d");let lines=[msg];
+  if(w<1400&&msg.includes(" ")){const m=msg.length/2;let b=-1;[...msg].forEach((ch,i)=>{if(ch===" "&&(b<0||Math.abs(i-m)<Math.abs(b-m)))b=i});lines=[msg.slice(0,b),msg.slice(b+1)]}
+  let fs=Math.min(h*.13,w*.19);o.font=FT(fs);
+  const mw=()=>Math.max(...lines.map(l=>o.measureText(l).width));
+  while(mw()>w*.86&&fs>10){fs-=2;o.font=FT(fs)}
+  const lh=fs*1.12,y0=h*.55-(lines.length-1)*lh/2,A=[];
+  lines.forEach((ln,i)=>{const x0=(w-o.measureText(ln).width)/2;
+    [...ln].forEach((ch,j)=>{if(ch===" ")return;A.push({ch,x:x0+o.measureText(ln.slice(0,j)).width+o.measureText(ch).width/2,y:y0+i*lh,n:A.length})})});
+  return {A,fs,box:[Math.min(...A.map(a=>a.x))-fs,Math.max(...A.map(a=>a.x))+fs,y0-fs,y0+(lines.length-1)*lh+fs]};
+}
+function start(){
+  const now=performance.now();if(now<busyUntil)return;
+  const msg=MSG[mi];mi=(mi+1)%MSG.length;
+  if(reduce){busyUntil=now+4000;hint.textContent=msg;setTimeout(()=>{hint.textContent=DEF},4000);return}
+  busyUntil=now+15000;running=true;
+  const d=Math.min(devicePixelRatio||1,2),w=Math.round(innerWidth*d),h=Math.round(innerHeight*d),U=Math.min(w,h)/100;
+  fc.width=ftc.width=bcv.width=w;fc.height=ftc.height=bcv.height=h;
+  const TS=3.2,TD=7.3,END=12,TX=layout(msg,w,h);
+  const types=["sphere","ring","willow","heart","peony","ring","sphere","double"],T=[.4,1.2,2,2.8,4.6,5.6,6.6,7.8];
+  const rockets=T.map((lt,n)=>({T:lt,type:types[n],x0:rnd(.12,.88)*w,tx:w*(.5+rnd(-.28,.28)),ty:h*rnd(.24,.44),rise:rnd(1,1.5),curve:rnd(-5,5)*U,done:false}));
+  let ps=[],fl=[];
+  const BCOL=["#f5c542","#e11d48","#10b981","#8b5cf6","#38bdf8","#fb923c","#f472b6"];
+  const bls=Array.from({length:14},(_,i)=>({lt:i*.36+rnd(0,.2),x0:rnd(.06,.94)*w,r:rnd(4.2,6.5)*U,ty:h*rnd(.12,.6),rd:rnd(3,5),sa:rnd(2,4)*U,sf:rnd(.9,1.5),ph:rnd(0,6.28),c:pick(BCOL),px:0}));
+  function drawBalloons(tt,dt){
+    bcx.clearRect(0,0,w,h);
+    bls.forEach(b=>{
+      const e=tt-b.lt;if(e<0)return;
+      const sy=h+b.r*4,u=Math.min(1,e/b.rd),k=1-Math.pow(1-u,2);
+      let y=sy+(b.ty-sy)*k+(u>=1?Math.sin(tt*1.1+b.ph)*b.r*.25-(e-b.rd)*.8*U:0);
+      const ex=Math.max(0,tt-(END-2.4));y-=ex*ex*6*U;
+      const x=b.x0+Math.sin(tt*b.sf+b.ph)*b.sa*(.4+.6*k),vx=b.px?(x-b.px)/Math.max(dt,.001):0;b.px=x;
+      const al=1-cl((tt-(END-1.2))/1.1,0,1),tilt=cl(vx*.005,-.3,.3),bx=x+Math.sin(tilt)*b.r*1.1,by=y+Math.cos(tilt)*b.r*1.1,sl=b.r*3.4;
+      bcx.globalAlpha=al*.85;bcx.strokeStyle="rgba(255,255,255,.9)";bcx.lineWidth=1.3*d;bcx.beginPath();bcx.moveTo(bx,by);
+      bcx.quadraticCurveTo(bx-vx*.05+Math.sin(tt*b.sf+b.ph+1)*b.r*.5,by+sl*.55,bx-vx*.08,by+sl);bcx.stroke();
+      drawBalloon(bcx,x,y,b.r,b.c,tilt,al);
+    });
+  }
+  const add=(x,y,vx,vy,c,o={})=>ps.push({x,y,vx,vy,a:0,l:o.l||rnd(1.6,2.4),c,s:(o.s||rnd(1.3,2.3))*d,k:o.k||1.4,g:o.g===undefined?15*U:o.g,tw:Math.random()<.4,crk:!!o.crk});
+  function burst(x,y,type,tt){
+    fl.push({x,y,t:tt,r:(type==="willow"?11:16)*U});
+    const c1=pick(PAL),c2=pick(PAL),n=120;
+    for(let i=0;i<n;i++){
+      const a=Math.PI*2*i/n,an=rnd(0,6.283);
+      if(type==="sphere"){const s=rnd(20,46)*U;add(x,y,Math.cos(an)*s,Math.sin(an)*s,i%3?c1:c2,{crk:i%4===0})}
+      else if(type==="ring"){add(x,y,Math.cos(a)*36*U,Math.sin(a)*36*U,c1);if(i%2)add(x,y,Math.cos(a)*20*U,Math.sin(a)*20*U,c2)}
+      else if(type==="peony"){const s=(i%2?44:28)*U*rnd(.95,1.05);add(x,y,Math.cos(an)*s,Math.sin(an)*s,i%2?c1:c2,{crk:i%3===0})}
+      else if(type==="willow"){const s=rnd(14,40)*U;add(x,y,Math.cos(an)*s,Math.sin(an)*s,"#ffd24a",{l:2.8,k:1.05,g:20*U,s:1.6})}
+      else if(type==="heart"){add(x,y,16*Math.pow(Math.sin(a),3)*2.6*U,-(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))*2.6*U,c1)}
+      else{add(x,y,Math.cos(a)*30*U,Math.sin(a)*30*U,c1);add(x,y,Math.cos(a)*48*U,Math.sin(a)*48*U,c2,{crk:i%5===0})}
+    }
+  }
+  const cxT=w/2,cyT=(TX.box[2]+TX.box[3])/2;let started=false,dis=false;
+  const t0=now;let last=now;
+  function drawText(tt){
+    g.clearRect(0,0,w,h);const fs=TX.fs;
+    g.font=FT(fs);g.textAlign="center";g.textBaseline="middle";
+    const gr=g.createLinearGradient(0,-fs*.5,0,fs*.5);gr.addColorStop(0,"#fff7d1");gr.addColorStop(.45,"#ffd24a");gr.addColorStop(1,"#c98a0a");
+    TX.A.forEach(a=>{
+      const ls=TS+a.n*.06,u=cl((tt-ls)/.5,0,1),v=cl((tt-(TD+a.n*.045))/.55,0,1),al=u*(1-v);if(al<=.01)return;
+      const e=1-Math.pow(1-u,3),sc=1+(1-e)*.35+v*.18,yy=a.y+(1-e)*fs*.15-v*fs*.3,fa=Math.max(0,1-(tt-ls)/.4);
+      if(fa>0){g.save();g.globalCompositeOperation="lighter";const rg=g.createRadialGradient(a.x,yy,0,a.x,yy,fs*.9);rg.addColorStop(0,`rgba(255,214,90,${.75*fa})`);rg.addColorStop(1,"rgba(255,214,90,0)");g.fillStyle=rg;g.fillRect(a.x-fs,yy-fs,fs*2,fs*2);g.restore()}
+      g.save();g.globalAlpha=al;g.translate(a.x,yy);g.scale(sc,sc);
+      g.shadowColor="rgba(255,190,40,.9)";g.shadowBlur=16*d;g.lineWidth=fs*.03;g.strokeStyle="rgba(110,60,0,.85)";g.strokeText(a.ch,0,0);
+      g.shadowBlur=10*d;g.fillStyle=gr;g.fillText(a.ch,0,0);g.restore();
+    });
+    [[TS+1.2,TS+2.6],[TD-2,TD-.8]].forEach(([s0,s1])=>{
+      if(tt<s0||tt>s1)return;const p=(tt-s0)/(s1-s0),bx=TX.box[0]+(TX.box[1]-TX.box[0]+fs*2)*p-fs;
+      const lg=g.createLinearGradient(bx-fs*.6,0,bx+fs*.6,0);lg.addColorStop(0,"rgba(255,255,255,0)");lg.addColorStop(.5,"rgba(255,255,255,.9)");lg.addColorStop(1,"rgba(255,255,255,0)");
+      g.save();g.globalCompositeOperation="source-atop";g.fillStyle=lg;g.fillRect(TX.box[0],TX.box[2],TX.box[1]-TX.box[0],TX.box[3]-TX.box[2]);g.restore();
+    });
+  }
+  function frame(nw){
+    const tt=(nw-t0)/1000,dt=Math.min((nw-last)/1000,1/30);last=nw;
+    f.globalCompositeOperation="destination-out";f.fillStyle="rgba(0,0,0,.2)";f.fillRect(0,0,w,h);
+    f.globalCompositeOperation="lighter";f.lineCap="round";
+    rockets.forEach(r=>{
+      if(r.done||tt<r.T)return;const e=(tt-r.T)/r.rise;
+      if(e>=1){r.done=true;burst(r.tx,r.ty,r.type,tt);return}
+      const k=1-Math.pow(1-e,2.2),sy=h+10*d,x=r.x0+(r.tx-r.x0)*k+Math.sin(e*Math.PI)*r.curve+Math.sin(e*40)*.25*U,y=sy+(r.ty-sy)*k;
+      for(let i=0;i<3;i++)add(x,y,rnd(-5,5)*U*.3,rnd(4,14)*U*.4,pick(["#ffb347","#ff8c1a","#ffe0a3"]),{l:rnd(.35,.8),s:1.1,k:2.5,g:12*U});
+      f.globalAlpha=1;f.fillStyle="#fff1cf";f.beginPath();f.arc(x,y,2.2*d,0,6.283);f.fill();
+    });
+    if(!started&&tt>=TS){started=true;burst(cxT,cyT-TX.fs*1.2,"willow",tt)}
+    if(started&&!dis&&tt>=TD){dis=true;burst(cxT,cyT,"ring",tt)}
+    fl=fl.filter(o=>{const a=1-(tt-o.t)/.35;if(a<=0)return false;
+      const rg=f.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r*(1+(tt-o.t)*2));rg.addColorStop(0,`rgba(255,244,214,${a})`);rg.addColorStop(1,"rgba(255,200,120,0)");
+      f.globalAlpha=1;f.fillStyle=rg;f.fillRect(o.x-o.r*3,o.y-o.r*3,o.r*6,o.r*6);return true});
+    ps=ps.filter(p=>{
+      p.a+=dt;
+      if(p.a>=p.l){if(p.crk)for(let i=0;i<3;i++)add(p.x,p.y,rnd(-9,9)*U,rnd(-9,9)*U,"#fff6d0",{l:rnd(.25,.45),s:1,k:2,g:6*U});return false}
+      const dr=Math.exp(-p.k*dt);p.vx*=dr;p.vy=p.vy*dr+p.g*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
+      const u=p.a/p.l,al=Math.pow(1-u,1.3)*(p.tw?.5+.5*Math.random():1);
+      f.globalAlpha=al;f.strokeStyle=p.c;f.lineWidth=p.s;f.beginPath();f.moveTo(p.x-p.vx*.04,p.y-p.vy*.04);f.lineTo(p.x,p.y);f.stroke();
+      if(u<.2){f.fillStyle="#fff";f.beginPath();f.arc(p.x,p.y,p.s*.7,0,6.283);f.fill()}
+      return true;
+    });
+    f.globalAlpha=1;drawBalloons(tt,dt);drawText(tt);
+    if(tt<END)requestAnimationFrame(frame);else{f.clearRect(0,0,w,h);g.clearRect(0,0,w,h);bcx.clearRect(0,0,w,h);running=false}
+  }
+  requestAnimationFrame(frame);
+}
+cv.addEventListener("click",start);
+cv.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();start()}});
+setInterval(()=>{
+  if(reduce&&performance.now()<busyUntil)return;
+  const left=Math.ceil((busyUntil-performance.now())/1000);
+  hint.textContent=running?"Enjoy the show":left>0?"Next fireworks in "+left+"s":DEF;
+},250);
+})();
+</script>
+<script>
+(function(){
+const sky=document.querySelector(".sky"),cv=document.getElementById("embers");if(!cv||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+const c=cv.getContext("2d"),COL=["255,122,61","255,179,71","255,74,42","255,217,160","255,140,80","45,226,192"];
+let W=0,H=0,d=1,vis=true,last=0,t=0,P=[];
+function size(){d=Math.min(devicePixelRatio||1,2);W=cv.width=Math.round(sky.clientWidth*d);H=cv.height=Math.round(sky.clientHeight*d)}
+function mk(i,init){return {x:Math.random()*W,y:init?Math.random()*H:H+10*d,vy:rnd(14,46)*d,sw:rnd(6,22)*d,f:rnd(.6,1.6),ph:Math.random()*6.28,r:rnd(.7,2.4)*d,c:COL[i%COL.length===5&&Math.random()<.7?0:i%COL.length],tw:rnd(2,5)}}
+const rnd=(a,b)=>a+Math.random()*(b-a);
+size();P=Array.from({length:Math.round(Math.min(60,Math.max(34,sky.clientWidth/10)))},(_,i)=>mk(i,true));
+addEventListener("resize",()=>{size()});
+new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(sky);
+function loop(n){
+  const dt=Math.min((n-last)/1000||.016,.04);last=n;t+=dt;
+  if(vis&&!document.hidden&&document.body.classList.contains("hasart")){
+    c.clearRect(0,0,W,H);c.globalCompositeOperation="lighter";
+    P.forEach((p,i)=>{
+      p.y-=p.vy*dt;const x=p.x+Math.sin(t*p.f+p.ph)*p.sw;
+      if(p.y<-10*d){P[i]=mk(i,false);return}
+      const a=Math.min(1,(H-p.y)/(H*.15))*Math.min(1,p.y/(H*.25)+.15)*(.55+.45*Math.sin(t*p.tw+p.ph));
+      const g=c.createRadialGradient(x,p.y,0,x,p.y,p.r*4);g.addColorStop(0,"rgba("+p.c+","+a+")");g.addColorStop(1,"rgba("+p.c+",0)");
+      c.fillStyle=g;c.fillRect(x-p.r*4,p.y-p.r*4,p.r*8,p.r*8);
+      c.fillStyle="rgba(255,240,220,"+a*.9+")";c.beginPath();c.arc(x,p.y,p.r*.55,0,6.283);c.fill();
+    });
+    c.globalCompositeOperation="source-over";
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
