@@ -66,29 +66,148 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:30px 18px ca
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .hang{display:flex;flex-direction:column;align-items:center;padding-top:env(safe-area-inset-top,0px);margin:0 -18px}
-#banner{width:min(100%,520px);display:block;cursor:pointer;touch-action:manipulation}
+.banner-stage{position:relative;width:min(100%,520px);display:flex;justify-content:center;isolation:isolate}
+#banner{width:100%;display:block;cursor:pointer;touch-action:manipulation;position:relative;z-index:2}
+.festival-decor{
+  position:absolute;
+  inset:-30px -18px -28px;
+  z-index:4;
+  pointer-events:none;
+  overflow:visible;
+}
+.silk-garland{
+  position:absolute;
+  left:2%;
+  right:2%;
+  height:72px;
+  transform-origin:center;
+  filter:drop-shadow(0 7px 8px rgba(0,0,0,.26));
+}
+.garland-top{top:-9px;transform:rotate(-1.2deg)}
+.garland-bottom{bottom:-10px;transform:rotate(1.1deg);opacity:.72}
+.garland-cord{
+  position:absolute;left:0;right:0;top:12px;height:2px;
+  border-radius:99px;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,235,179,.48) 12%,rgba(255,248,215,.78) 50%,rgba(255,218,129,.44) 88%,transparent 100%);
+  box-shadow:0 0 9px rgba(255,202,78,.18);
+}
+.garland-bottom .garland-cord{top:auto;bottom:12px}
+.flag{
+  position:absolute;
+  top:12px;
+  width:31px;height:42px;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:50% 0;
+  border-radius:1px;
+  background:linear-gradient(105deg,rgba(255,255,255,.42),transparent 20%,transparent 64%,rgba(0,0,0,.20)),
+             linear-gradient(90deg,var(--a),var(--b) 48%,var(--a));
+  box-shadow:inset 0 0 7px rgba(255,255,255,.13),0 4px 7px rgba(0,0,0,.25);
+  animation:silkFlag 7.2s ease-in-out infinite;
+}
+.flag::after{
+  content:"";position:absolute;left:15%;top:5%;width:18%;height:86%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.62),transparent);
+  filter:blur(1px);opacity:.48;transform:skewX(-8deg);
+}
+.flag.f1{left:2%;--a:#ef3340;--b:#ffb52e;animation-delay:-1.1s}
+.flag.f2{left:14%;--a:#169ee0;--b:#69dcff;animation-delay:-4.4s}
+.flag.f3{left:26%;--a:#efb82e;--b:#fff1a1;animation-delay:-2.2s}
+.flag.f4{left:38%;--a:#20b56b;--b:#91f2bd;animation-delay:-5.1s}
+.flag.f5{left:50%;--a:#e83d68;--b:#ff9db2;animation-delay:-3.4s}
+.flag.f6{left:62%;--a:#8257e6;--b:#d7c1ff;animation-delay:-6.0s}
+.flag.f7{left:74%;--a:#ef8c24;--b:#ffd18a;animation-delay:-2.8s}
+.flag.f8{left:86%;--a:#11aaa9;--b:#8deee4;animation-delay:-4.9s}
+.flag.f9{left:97%;--a:#df3b3b;--b:#ff9696;animation-delay:-1.8s}
+.garland-bottom .flag{top:auto;bottom:12px;transform-origin:50% 100%;animation-name=silkFlagBottom}
+.garland-bottom .flag.f1{left:5%}.garland-bottom .flag.f2{left:18%}.garland-bottom .flag.f3{left:31%}.garland-bottom .flag.f4{left:44%}
+.garland-bottom .flag.f5{left:57%}.garland-bottom .flag.f6{left:70%}.garland-bottom .flag.f7{left:83%}.garland-bottom .flag.f8{left:96%}
+.silk-tail{
+  position:absolute;width:92px;height:32px;border-radius:55% 45% 55% 45%;
+  top:30%;opacity:.88;filter:drop-shadow(0 7px 8px rgba(0,0,0,.26));
+  background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 24%,rgba(0,0,0,.16) 82%),
+             linear-gradient(90deg,var(--ta),var(--tb),var(--ta));
+  animation:silkTail 8.5s ease-in-out infinite;
+}
+.silk-tail::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.46) 49%,transparent 72%);
+  opacity:.42;filter:blur(1px);animation:satinSweep 5.5s ease-in-out infinite;
+}
+.tail-left{left:-30px;transform:rotate(-18deg) skewX(-12deg);--ta:#a91d36;--tb:#f05c69}
+.tail-right{right:-30px;transform:rotate(18deg) skewX(12deg);--ta:#c77d1d;--tb:#ffe18a;animation-delay:-3.7s}
+.decor-spark{
+  position:absolute;width:4px;height:4px;border-radius:50%;
+  background:#fff8d9;
+  box-shadow:0 0 7px 2px rgba(255,229,145,.86),0 0 17px 5px rgba(255,176,47,.28);
+  opacity:0;animation:decorSpark 5.8s ease-in-out infinite;
+}
+.ds1{left:9%;top:7%;animation-delay:.7s}.ds2{left:30%;top:18%;animation-delay:3.2s}
+.ds3{left:68%;top:9%;animation-delay:1.9s}.ds4{right:8%;top:28%;animation-delay:4.4s}
+.ds5{left:23%;bottom:12%;animation-delay:2.5s}.ds6{right:28%;bottom:8%;animation-delay:5.0s}
+@keyframes silkFlag{
+  0%,100%{transform:rotate(0deg) skewX(0deg) translateY(0)}
+  38%{transform:rotate(1.8deg) skewX(-2.2deg) translateY(1px)}
+  72%{transform:rotate(-1.1deg) skewX(1.4deg) translateY(-.5px)}
+}
+@keyframes silkFlagBottom{
+  0%,100%{transform:rotate(0deg) skewX(0deg) translateY(0)}
+  42%{transform:rotate(-1.6deg) skewX(2deg) translateY(-1px)}
+  76%{transform:rotate(1deg) skewX(-1.2deg) translateY(.5px)}
+}
+@keyframes silkTail{
+  0%,100%{translate:0 0;rotate:0deg}
+  50%{translate:0 3px;rotate:1.2deg}
+}
+@keyframes satinSweep{
+  0%,58%{transform:translateX(-130%);opacity:0}
+  72%{transform:translateX(75%);opacity:.72}
+  86%,100%{transform:translateX(130%);opacity:0}
+}
+@keyframes decorSpark{
+  0%,68%,100%{opacity:0;transform:scale(.35)}
+  74%{opacity:.95;transform:scale(1.1)}
+  82%{opacity:.15;transform:scale(.65)}
+}
+@media (max-width:700px){
+  .festival-decor{inset:-24px -8px -22px}
+  .silk-garland{height:57px}
+  .flag{width:23px;height:31px}
+  .garland-cord{top:10px}.garland-bottom .garland-cord{bottom:10px}
+  .garland-bottom .flag{bottom:10px}
+  .silk-tail{width:66px;height:23px}.tail-left{left:-21px}.tail-right{right:-21px}
+  .decor-spark{width:3px;height:3px}
+}
+@media (prefers-reduced-motion:reduce){
+  .flag,.silk-tail,.silk-tail::after,.decor-spark{animation:none!important}
+  .decor-spark{opacity:.35}
+}
+
 .hint{margin:0 0 6px;font-size:.85rem;color:#fff;text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.55)}
 #fxWrap{position:fixed;inset:0;z-index:50;pointer-events:none}
 #fx,#fxT,#fxB{position:absolute;inset:0;width:100%;height:100%}
-.sky{position:absolute;top:0;left:0;right:0;height:340px;overflow:hidden;z-index:0;pointer-events:none;background:linear-gradient(180deg,#2f86e6 0%,#69b3f3 45%,#a8d5fa 75%,#d6ecff 100%);-webkit-mask-image:linear-gradient(#000 40%,transparent 85%);mask-image:linear-gradient(#000 40%,transparent 85%)}
-.cloud{position:absolute;left:0;top:var(--t);width:var(--w);height:calc(var(--w)*.3);background:#fff;border-radius:99px;opacity:var(--o);filter:blur(5px);animation:drift var(--d) linear var(--dl) infinite;will-change:transform}
-.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
-.cloud::before{width:42%;height:150%;left:14%;top:-60%}
-.cloud::after{width:34%;height:120%;left:50%;top:-40%}
-@keyframes drift{from{transform:translateX(-300px)}to{transform:translateX(calc(100vw + 300px))}}
-@media (prefers-reduced-motion:reduce){.cloud{animation:none;left:var(--x)}}
-.skyline{position:absolute;top:190px;left:0;width:100%;height:120px;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(#000 62%,transparent);mask-image:linear-gradient(#000 62%,transparent)}
-.flag{transform-box:fill-box;transform-origin:0 50%;animation:flagw 2.6s ease-in-out infinite alternate}
-@keyframes flagw{from{transform:skewY(-9deg) scaleX(1)}to{transform:skewY(9deg) scaleX(.86)}}
-@media (prefers-reduced-motion:reduce){.flag{animation:none}}
-.art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%}
-.hero-video{object-position:center center;transform-origin:center top;will-change:opacity,transform,filter}
-.video-vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(7,8,14,.08) 0%,rgba(7,8,14,.04) 42%,rgba(18,15,14,.72) 100%);z-index:2}
-.sky::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,rgba(18,15,14,0),rgba(18,15,14,.96));pointer-events:none;z-index:3}
-#heroSky{height:clamp(320px,62vw,560px);-webkit-mask-image:none;mask-image:none;overflow:hidden;background:#090a10;transition:opacity .18s linear,filter .18s linear}
-#heroSky .hero-video{height:100%;width:100%;object-fit:cover}
-#heroSky .art{animation:none}
-#heroSky .cloud,#heroSky .skyline{display:none}
+
+/* ---------- Premium ambient light field ---------- */
+#ambientFX{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;isolation:isolate;background:
+  radial-gradient(120% 75% at 50% -12%,rgba(255,184,76,.07),transparent 58%),
+  linear-gradient(180deg,#09090d 0%,#0b0a0d 48%,#08090c 100%)}
+#ambientFX::before{content:"";position:absolute;inset:-18%;background:
+  radial-gradient(36% 32% at 18% 16%,rgba(var(--amb1),.28),transparent 72%),
+  radial-gradient(34% 30% at 84% 22%,rgba(var(--amb2),.24),transparent 72%),
+  radial-gradient(40% 36% at 78% 78%,rgba(var(--amb3),.20),transparent 72%),
+  radial-gradient(38% 34% at 18% 84%,rgba(var(--amb4),.18),transparent 72%);
+  filter:blur(42px) saturate(125%);transform:scale(1.08);opacity:.95;transition:filter .8s ease,opacity .8s ease}
+#ambientFX::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(ellipse at 50% 38%,transparent 0%,rgba(0,0,0,.10) 52%,rgba(0,0,0,.52) 100%),
+  linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.20));mix-blend-mode:multiply}
+.ambient-orb{position:absolute;border-radius:50%;filter:blur(70px);mix-blend-mode:screen;opacity:.20;will-change:transform,background}
+.ambient-orb.o1{width:46vw;height:46vw;left:-14vw;top:18vh;background:radial-gradient(circle,rgba(var(--amb1),.72),transparent 68%);animation:ambDrift1 18s ease-in-out infinite alternate}
+.ambient-orb.o2{width:42vw;height:42vw;right:-13vw;top:35vh;background:radial-gradient(circle,rgba(var(--amb2),.68),transparent 70%);animation:ambDrift2 22s ease-in-out infinite alternate}
+.ambient-orb.o3{width:48vw;height:48vw;left:25vw;bottom:-24vw;background:radial-gradient(circle,rgba(var(--amb3),.60),transparent 70%);animation:ambDrift3 25s ease-in-out infinite alternate}
+@keyframes ambDrift1{to{transform:translate3d(10vw,6vh,0) scale(1.12)}}
+@keyframes ambDrift2{to{transform:translate3d(-9vw,-7vh,0) scale(.9)}}
+@keyframes ambDrift3{to{transform:translate3d(4vw,-8vh,0) scale(1.1)}}
+@media (max-width:700px){#ambientFX::before{filter:blur(34px);opacity:.82}.ambient-orb{filter:blur(52px);opacity:.16}.ambient-orb.o1{width:72vw;height:72vw;left:-30vw}.ambient-orb.o2{width:66vw;height:66vw;right:-28vw}.ambient-orb.o3{width:76vw;height:76vw;left:18vw}}
+@media (prefers-reduced-motion:reduce){.ambient-orb{animation:none!important}#ambientFX::before{transition:none}}
 
 .hasart .skyline{display:none}
 .hasart .cloud{display:none}
@@ -105,24 +224,38 @@ footer small{display:block;margin-top:8px;opacity:.75}
 #embers{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hasart #embers{display:block}
 @media (prefers-reduced-motion:reduce){.hasart .art,.moonglow{animation:none}#embers{display:none!important}}
+
+/* Premium glass depth */
+.panel,.person,.count div{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.028));border-color:rgba(255,255,255,.11);box-shadow:0 18px 60px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(20px) saturate(125%);-webkit-backdrop-filter:blur(20px) saturate(125%)}
+.panel::before,.person::before,.count div::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 30%,transparent 70%,rgba(255,255,255,.025));opacity:.55}
+.hero h1,.hero .sub,.hero .btns{position:relative;z-index:1}
+.hint{position:relative;z-index:4;letter-spacing:.035em;text-transform:uppercase;font-size:.68rem;color:rgba(255,244,214,.82);background:rgba(10,8,10,.58)!important;border:1px solid rgba(255,216,128,.16);box-shadow:0 8px 28px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 </style>
 </head>
 <body>
-<div class="sky" id="heroSky" aria-hidden="true"><video class="art hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="festival-banner.png"><source src="hero-background.mp4" type="video/mp4"></video><div class="video-vignette"></div><div class="moonglow"></div><canvas id="embers"></canvas><i class="cloud" style="--w:230px;--t:24px;--o:0.9;--d:110s;--dl:-30s;--x:6vw"></i><i class="cloud" style="--w:150px;--t:92px;--o:0.75;--d:80s;--dl:-55s;--x:60vw"></i><i class="cloud" style="--w:280px;--t:150px;--o:0.8;--d:140s;--dl:-95s;--x:30vw"></i><i class="cloud" style="--w:120px;--t:40px;--o:0.65;--d:70s;--dl:-12s;--x:75vw"></i><i class="cloud" style="--w:190px;--t:200px;--o:0.6;--d:100s;--dl:-70s;--x:48vw"></i><i class="cloud" style="--w:100px;--t:120px;--o:0.55;--d:65s;--dl:-40s;--x:85vw"></i></div>
-<svg class="skyline" viewBox="0 0 800 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="skg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b1763"/><stop offset="1" stop-color="#120f0e"/></linearGradient></defs>
-<g fill="url(#skg)"><rect x="0" y="80" width="800" height="40"/><path d="M0 78H800" stroke="#2b1763" stroke-width="9" stroke-dasharray="11 8"/>
-<rect x="58" y="42" width="38" height="78"/><polygon points="53,42 77,14 101,42"/>
-<rect x="188" y="54" width="42" height="66"/><polygon points="183,54 209,28 235,54"/>
-<rect x="352" y="32" width="96" height="88"/><polygon points="344,32 400,2 456,32"/><rect x="372" y="48" width="12" height="18" fill="#120f0e" opacity=".6"/><rect x="416" y="48" width="12" height="18" fill="#120f0e" opacity=".6"/>
-<rect x="540" y="50" width="38" height="70"/><polygon points="535,50 559,24 583,50"/>
-<rect x="676" y="38" width="46" height="82"/><polygon points="671,38 699,10 727,38"/></g>
-<g fill="#f5c542"><path class="flag" d="M77 14V0l17 5-17 5z"/><path class="flag" d="M209 28V14l17 5-17 5z"/><path class="flag" d="M400 2V-10l19 5-19 5z"/><path class="flag" d="M559 24V10l17 5-17 5z"/><path class="flag" d="M699 10V-4l17 5-17 5z"/></g></svg>
+<div id="ambientFX" aria-hidden="true"><span class="ambient-orb o1"></span><span class="ambient-orb o2"></span><span class="ambient-orb o3"></span></div>
 <main>
 
 <div class="hang">
+  <div class="banner-stage">
+  <div class="festival-decor" aria-hidden="true">
+    <div class="silk-garland garland-top">
+      <span class="garland-cord"></span>
+      <i class="flag f1"></i><i class="flag f2"></i><i class="flag f3"></i><i class="flag f4"></i><i class="flag f5"></i><i class="flag f6"></i><i class="flag f7"></i><i class="flag f8"></i><i class="flag f9"></i>
+    </div>
+    <div class="silk-garland garland-bottom">
+      <span class="garland-cord"></span>
+      <i class="flag f1"></i><i class="flag f2"></i><i class="flag f3"></i><i class="flag f4"></i><i class="flag f5"></i><i class="flag f6"></i><i class="flag f7"></i><i class="flag f8"></i>
+    </div>
+    <span class="silk-tail tail-left"></span>
+    <span class="silk-tail tail-right"></span>
+    <span class="decor-spark ds1"></span><span class="decor-spark ds2"></span>
+    <span class="decor-spark ds3"></span><span class="decor-spark ds4"></span>
+    <span class="decor-spark ds5"></span><span class="decor-spark ds6"></span>
+  </div>
   <canvas id="banner" role="button" tabindex="0" aria-label="CLAN FESTIVAL 2026, organized by BANGLADESH CLAN. Activate for fireworks."></canvas>
-  <p class="hint" id="hint">Tap the banner for fireworks</p>
 </div>
+<p class="hint" id="hint">Tap the banner for fireworks</p>
 <div id="fxWrap" aria-hidden="true"><canvas id="fxB"></canvas><canvas id="fx"></canvas><canvas id="fxT"></canvas></div>
 
 <section class="hero">
@@ -212,27 +345,6 @@ footer small{display:block;margin-top:8px;opacity:.75}
 </main>
 <footer>CLAN FESTIVAL 2026 · Organized by BANGLADESH CLAN · <a href="more.html">More to know</a><small>This material is unofficial and is not endorsed by Supercell. For more information see Supercell's Fan Content Policy: www.supercell.com/fan-content-policy. Clash of Clans is a trademark of Supercell.</small></footer>
 
-<script>
-(function(){
-  const sky=document.getElementById("heroSky"),video=document.getElementById("heroVideo");
-  if(!sky||!video)return;
-  document.body.classList.add("hasart");
-  video.play().catch(()=>{});
-  let ticking=false;
-  function updateHero(){
-    ticking=false;
-    const h=Math.max(sky.offsetHeight,1),y=Math.max(0,window.scrollY),p=Math.min(1,y/(h*.92));
-    const fade=Math.pow(p,1.05),opacity=1-.9*fade,blur=1.8*fade,scale=1+.035*fade,shift=-10*fade;
-    sky.style.opacity=opacity.toFixed(3);
-    sky.style.filter=`blur(${blur.toFixed(2)}px)`;
-    video.style.transform=`translateY(${shift.toFixed(1)}px) scale(${scale.toFixed(3)})`;
-  }
-  function request(){if(ticking)return;ticking=true;requestAnimationFrame(updateHero)}
-  addEventListener("scroll",request,{passive:true});
-  addEventListener("resize",request,{passive:true});
-  request();
-})();
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 const SUPABASE_URL = "https://swvhnjzqvzooifyugujb.supabase.co";
@@ -332,6 +444,17 @@ init();
 (function(){
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const cv=document.getElementById("banner"),cx=cv.getContext("2d"),hint=document.getElementById("hint");
+
+const decorStage=document.querySelector(".festival-decor");
+let decorScrollY=window.scrollY||0, decorTarget=0, decorCurrent=0;
+window.addEventListener("scroll",()=>{decorTarget=Math.max(-1,Math.min(1,((window.scrollY||0)-decorScrollY)/220));decorScrollY=window.scrollY||0},{passive:true});
+function settleDecor(){
+  decorCurrent+=(decorTarget-decorCurrent)*.045;
+  if(decorStage) decorStage.style.transform=`translate3d(${decorCurrent*2}px,${decorCurrent*.7}px,0)`;
+  decorTarget*=.93;
+  requestAnimationFrame(settleDecor);
+}
+settleDecor();
 const FT=s=>`800 ${s}px "Bricolage Grotesque","Arial Black",Impact,sans-serif`;
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v)),rnd=(a,b)=>a+Math.random()*(b-a),pick=a=>a[Math.floor(Math.random()*a.length)];
 let dpr,W,H,BW,BH,ox,oy,L,tex,bal=[],SP=[],vis=true,t=0,lastT=0,lastY=scrollY,ang=0,angV=0,boost=0,dirS=0;
@@ -430,7 +553,7 @@ function loop(now){
   const dt=Math.min((now-lastT)/1000||1/60,1/30);lastT=now;t+=dt;
   if(vis&&!document.hidden&&!reduce){
     angV+=(-ang*14-angV*3.2+.5*(Math.sin(t*.9)+.5*Math.sin(t*1.9)))*dt;
-    ang=cl(ang+angV*dt,-.16,.16);boost*=Math.exp(-1.6*dt);dirS*=Math.exp(-1.4*dt);
+    ang=cl(ang+angV*dt,-.075,.075);boost*=Math.exp(-1.8*dt);dirS*=Math.exp(-1.7*dt);
     draw(dt);
   }
   requestAnimationFrame(loop);
@@ -438,7 +561,10 @@ function loop(now){
 addEventListener("scroll",()=>{
   const dy=scrollY-lastY;lastY=scrollY;if(!dy||reduce)return;
   const dir=Math.sign(dy),sp=Math.min(Math.abs(dy),80)/80;
-  angV+=dir*(.2+.45*sp)*(dir<0?1.25:1);boost=Math.min(boost+sp*.5,1);dirS+=(dir-dirS)*.5;
+  // Scrolling gently influences the cloth instead of making the whole banner swing.
+   angV+=dir*(.018+.055*sp)*(dir<0?1.05:1);
+   boost=Math.min(boost+sp*.08,.22);
+   dirS+=(dir-dirS)*.28;
 },{passive:true});
 new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(cv);
 let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(build,200)});
